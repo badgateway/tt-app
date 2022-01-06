@@ -21,7 +21,8 @@
           "DOM",
           "ES2019"
         ],
-        "declaration": true
+        "declaration": true,
+        "jsx": "react-jsx"
     },
     "include": [
         "src/**/*"
