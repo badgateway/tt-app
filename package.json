@@ -1,7 +1,7 @@
 {
-  "name": "@curveball/starter",
-  "version": "0.0.1",
-  "description": "Minimal curveball starter template",
+  "name": "@badgateway/tt-frontend",
+  "version": "0.6.0",
+  "description": "Frontend for the time-tracking app",
   "main": "dist/index.js",
   "scripts": {
     "prepublishOnly": "tsc",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/curveball/new-package.git"
+    "url": "git+https://github.com/badgateway/tt-app.git"
   },
   "files": [
     "package.json",
@@ -23,13 +23,14 @@
     "LICENSE"
   ],
   "author": "Evert Pot (https://evertpot.com/)",
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/curveball/starter/issues"
+    "url": "https://github.com/badgateway/tt-app/issues"
   },
-  "homepage": "https://github.com/curveball/starter#readme",
+  "homepage": "https://github.com/badgateway/tt-app#readme",
   "devDependencies": {
     "@types/node": "^14.14.10",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
     "eslint": "^8.3.0",
@@ -48,6 +49,8 @@
     "@curveball/controller": "^0.3.0",
     "@curveball/core": "^0.16.3",
     "@curveball/problem": "^0.3.0",
-    "@curveball/router": "^0.3.0"
+    "@curveball/react": "^0.1.0",
+    "@curveball/router": "^0.3.0",
+    "@curveball/static": "^0.2.1"
   }
 }
