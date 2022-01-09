@@ -22,7 +22,7 @@
           "ES2019"
         ],
         "declaration": true,
-        "jsx": "react-jsx"
+        "jsx": "react"
     },
     "include": [
         "src/**/*"
