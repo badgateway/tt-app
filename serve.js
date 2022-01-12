@@ -2,6 +2,15 @@ const { build } = require("esbuild");
 const chokidar = require("chokidar");
 const liveServer = require("live-server");
 
+/**
+ * This is our 'dev server'.
+ *
+ * Code for this was provided by https://github.com/zaydek/
+ *
+ * Thanks!
+ *
+ * https://github.com/zaydek/esbuild-hot-reload
+ */
 (async () => {
   // `esbuild` bundler for JavaScript / TypeScript.
   const builder = await build({
@@ -19,6 +28,7 @@ const liveServer = require("live-server");
     // Bundles JavaScript to (see `entryPoints`).
     outfile: "public/script.js",
   });
+
   // `chokidar` watcher source changes.
   chokidar
     // Watches TypeScript and React TypeScript.
@@ -26,8 +36,13 @@ const liveServer = require("live-server");
       interval: 0, // No delay
     })
     // Rebuilds esbuild (incrementally -- see `build.incremental`).
-    .on("all", () => {
-      builder.rebuild()
+    .on("all", async () => {
+
+      try {
+        await builder.rebuild();
+      } catch (err) {
+        console.error('Error during rebuild!', err);
+      }
     });
   // `liveServer` local server for hot reload.
   liveServer.start({

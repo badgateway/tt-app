@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Link } from 'ketting';
 import { useResource } from 'react-ketting';
 import { Link as RouterLink } from 'react-router-dom';
+import { Nav, Navbar } from 'react-bootstrap';
 
-export function Navigation() {
+export function NavigationLinks() {
 
   const { loading, error, resourceState } = useResource('/');
 
@@ -17,11 +18,11 @@ export function Navigation() {
 
   const links = resourceState.links.getAll();
 
-  return <nav>
-    <ul>
+  return <Navbar.Collapse id="basic-navbar-nav" role="navigation">
+    <Nav className="me-auto">
       {links.map( link => <NavItem link={link} key={link.href} /> )}
-    </ul>
-  </nav>;
+    </Nav>
+  </Navbar.Collapse>;
 
 }
 
@@ -45,8 +46,6 @@ export function NavItem({link}: NavItemProps) {
     case 'person-collection' :
       title = 'People';
       break
-
   }
-  return <li><RouterLink to={link.href}>{title}</RouterLink></li>;
-  
+  return <Nav.Link><RouterLink to={link.href}>{title}</RouterLink></Nav.Link>;
 }
