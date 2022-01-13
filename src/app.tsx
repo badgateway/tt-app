@@ -3,9 +3,10 @@ import * as React from 'react';
 import { Client } from 'ketting';
 import { KettingProvider } from 'react-ketting';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 
-import { Navigation } from './components/Navigation';
 import { ResourcePage } from './components/ResourcePage';
+import { NavBar } from './components/NavBar';
 
 function App() {
 
@@ -13,15 +14,12 @@ function App() {
 
   return <KettingProvider client={client}>
     <BrowserRouter>
-    <header>
-      <h1>Time Tracker</h1>
-      <Navigation />
-    </header>
-    <main>
+    <NavBar />
+    <Container>
       <Routes>
         <Route path="*" element={<ResourcePage />}/>
       </Routes>
-    </main>
+    </Container>
     </BrowserRouter>
   </KettingProvider>;
 

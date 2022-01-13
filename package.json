@@ -1,6 +1,6 @@
 {
   "name": "@badgateway/tt-app",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Frontend for the time-tracking app",
   "main": "dist/index.js",
   "scripts": {
@@ -49,5 +49,8 @@
     "extension": [
       ".ts"
     ]
+  },
+  "dependencies": {
+    "react-bootstrap": "^2.1.0"
   }
 }
