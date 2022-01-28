@@ -498,7 +498,7 @@
             }
             return element;
           };
-          function createElement9(type, config, children) {
+          function createElement7(type, config, children) {
             var propName;
             var props = {};
             var key = null;
@@ -1546,7 +1546,7 @@
                 error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
               }
             }
-            var element = createElement9.apply(this, arguments);
+            var element = createElement7.apply(this, arguments);
             if (element == null) {
               return element;
             }
@@ -2440,11 +2440,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React40 = require_react();
+          var React38 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React40.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React38.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2476,7 +2476,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React40) {
+          if (!React38) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -2488,7 +2488,7 @@
           var HostPortal = 4;
           var HostComponent = 5;
           var HostText = 6;
-          var Fragment3 = 7;
+          var Fragment2 = 7;
           var Mode = 8;
           var ContextConsumer = 9;
           var ContextProvider = 10;
@@ -3692,7 +3692,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React40.Children.forEach(children, function(child) {
+            React38.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3703,7 +3703,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React40.Children.forEach(props.children, function(child) {
+                React38.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -8457,7 +8457,7 @@
               }
             }
           }
-          function createElement9(type, props, rootContainerElement, parentNamespace) {
+          function createElement7(type, props, rootContainerElement, parentNamespace) {
             var isCustomComponentTag;
             var ownerDocument2 = getOwnerDocumentFromRootContainer(rootContainerElement);
             var domElement;
@@ -9334,7 +9334,7 @@
               }
               parentNamespace = hostContextDev.namespace;
             }
-            var domElement = createElement9(type, props, rootContainerInstance, parentNamespace);
+            var domElement = createElement7(type, props, rootContainerInstance, parentNamespace);
             precacheFiberNode(internalInstanceHandle, domElement);
             updateFiberProps(domElement, props);
             return domElement;
@@ -10896,7 +10896,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React40.Component().refs;
+          var emptyRefsObject = new React38.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -11672,7 +11672,7 @@
               }
             }
             function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-              if (current2 === null || current2.tag !== Fragment3) {
+              if (current2 === null || current2.tag !== Fragment2) {
                 var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
                 created.return = returnFiber;
                 return created;
@@ -12040,7 +12040,7 @@
               while (child !== null) {
                 if (child.key === key) {
                   switch (child.tag) {
-                    case Fragment3: {
+                    case Fragment2: {
                       if (element.type === REACT_FRAGMENT_TYPE) {
                         deleteRemainingChildren(returnFiber, child.sibling);
                         var existing = useFiber(child, element.props.children);
@@ -15644,7 +15644,7 @@
                 var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
                 return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
               }
-              case Fragment3:
+              case Fragment2:
                 return updateFragment(current2, workInProgress2, renderLanes2);
               case Mode:
                 return updateMode(current2, workInProgress2, renderLanes2);
@@ -15811,7 +15811,7 @@
               case SimpleMemoComponent:
               case FunctionComponent:
               case ForwardRef:
-              case Fragment3:
+              case Fragment2:
               case Mode:
               case Profiler:
               case ContextConsumer:
@@ -19515,7 +19515,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             return fiber;
           }
           function createFiberFromFragment(elements, mode, lanes, key) {
-            var fiber = createFiber(Fragment3, elements, key, mode);
+            var fiber = createFiber(Fragment2, elements, key, mode);
             fiber.lanes = lanes;
             return fiber;
           }
@@ -22539,8 +22539,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       "use strict";
       Object.defineProperty(exports, "__esModule", { value: true });
       exports.KettingProvider = exports.getKettingContext = void 0;
-      var React40 = require_react();
-      var KettingContext = React40.createContext({});
+      var React38 = require_react();
+      var KettingContext = React38.createContext({});
       function getKettingContext() {
         return KettingContext;
       }
@@ -22550,7 +22550,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         const contextValue = {
           client
         };
-        return React40.createElement(Context2.Provider, { value: contextValue }, children);
+        return React38.createElement(Context2.Provider, { value: contextValue }, children);
       };
       exports.KettingProvider = KettingProvider2;
     }
@@ -22629,8 +22629,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var react_1 = require_react();
       var use_client_1 = require_use_client();
       var use_resolve_resource_1 = require_use_resolve_resource();
-      function useReadResource(options) {
-        const { resource, setResource } = (0, use_resolve_resource_1.useResolveResource)(options.resource);
+      function useReadResource(resourceLike, options) {
+        const { resource, setResource } = (0, use_resolve_resource_1.useResolveResource)(resourceLike);
         const initialState = options.initialState;
         const refreshOnStale = options.refreshOnStale || false;
         const client = (0, use_client_1.useClient)();
@@ -22716,23 +22716,20 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var use_read_resource_1 = require_use_read_resource();
       function useCollection2(resourceLike, options) {
         const rel = (options === null || options === void 0 ? void 0 : options.rel) || "item";
-        const { resourceState, loading, error } = (0, use_read_resource_1.useReadResource)({
-          resource: resourceLike,
+        const { resourceState, loading, error } = (0, use_read_resource_1.useReadResource)(resourceLike, {
           refreshOnStale: options === null || options === void 0 ? void 0 : options.refreshOnStale,
           initialGetRequestHeaders: {
             Prefer: "transclude=" + rel
           }
         });
-        const [items, setItems] = (0, react_1.useState)([]);
-        (0, react_1.useEffect)(() => {
-          if (!resourceState)
-            return;
-          setItems(resourceState.followAll(rel));
-        }, [resourceState]);
+        const items = (0, react_1.useRef)([]);
+        if (resourceState) {
+          items.current = resourceState.followAll(rel);
+        }
         return {
           loading,
           error,
-          items
+          items: items.current
         };
       }
       exports.useCollection = useCollection2;
@@ -22752,15 +22749,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         const rel = (options === null || options === void 0 ? void 0 : options.rel) || "item";
         const [items, setItems] = (0, react_1.useState)([]);
         const [currentCollectionResource, setCurrentCollectionResource] = (0, react_1.useState)(resourceLike);
-        const bc = (0, use_read_resource_1.useReadResource)({
-          resource: resourceLike,
+        const bc = (0, use_read_resource_1.useReadResource)(resourceLike, {
           refreshOnStale: options === null || options === void 0 ? void 0 : options.refreshOnStale,
           initialGetRequestHeaders: {
             Prefer: "transclude=" + rel
           }
         });
-        const cc = (0, use_read_resource_1.useReadResource)({
-          resource: currentCollectionResource,
+        const cc = (0, use_read_resource_1.useReadResource)(currentCollectionResource, {
           refreshOnStale: options === null || options === void 0 ? void 0 : options.refreshOnStale,
           initialGetRequestHeaders: {
             Prefer: "transclude=" + rel
@@ -22807,14 +22802,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var ketting_1 = require_ketting_min();
       var react_1 = require_react();
       var use_client_1 = require_use_client();
-      function useResource5(arg1) {
-        const [resourceLike, mode, initialData, refreshOnStale] = getUseResourceOptions(arg1);
+      function useResource3(resourceLike, options) {
+        var _a, _b;
         const [resource, setResource] = (0, react_1.useState)(resourceLike instanceof ketting_1.Resource ? resourceLike : void 0);
         const client = (0, use_client_1.useClient)();
-        const [resourceState, setResourceState] = useResourceState(resourceLike, initialData, client);
+        const [resourceState, setResourceState] = useResourceState(typeof resourceLike === "string" ? client.go(resourceLike) : resourceLike, (_a = options === null || options === void 0 ? void 0 : options.initialState) !== null && _a !== void 0 ? _a : void 0, client);
         const [loading, setLoading] = (0, react_1.useState)(resourceState === void 0);
         const [error, setError] = (0, react_1.useState)(null);
-        const [modeVal, setModeVal] = (0, react_1.useState)(mode);
+        const [modeVal, setModeVal] = (0, react_1.useState)((_b = options === null || options === void 0 ? void 0 : options.mode) !== null && _b !== void 0 ? _b : "PUT");
         (0, react_1.useEffect)(() => {
           if (resourceLike instanceof ketting_1.Resource) {
             setResource(resourceLike);
@@ -22830,7 +22825,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           }
         }, [resourceLike]);
         (0, react_1.useEffect)(() => {
-          if (!resource || mode === "POST") {
+          if (!resource || modeVal === "POST") {
             return;
           }
           const onUpdate = (newState) => {
@@ -22838,7 +22833,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             setLoading(false);
           };
           const onStale = () => {
-            if (refreshOnStale) {
+            var _a2;
+            if ((_a2 = options === null || options === void 0 ? void 0 : options.refreshOnStale) !== null && _a2 !== void 0 ? _a2 : false) {
               resource.refresh().catch((err) => {
                 setError(err);
               });
@@ -22917,32 +22913,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         };
         return result;
       }
-      exports.useResource = useResource5;
-      function getUseResourceOptions(arg1) {
-        var _a;
-        const client = (0, use_client_1.useClient)();
-        let mode;
-        let initialState;
-        let res;
-        let refreshOnStale;
-        if (isUseResourceOptions(arg1)) {
-          mode = arg1.mode;
-          initialState = arg1.initialState;
-          res = arg1.resource;
-          refreshOnStale = (_a = arg1.refreshOnStale) !== null && _a !== void 0 ? _a : false;
-        } else {
-          mode = "PUT";
-          initialState = void 0;
-          res = arg1;
-          refreshOnStale = false;
-        }
-        return [
-          typeof res === "string" ? client.go(res) : res,
-          mode,
-          initialState,
-          refreshOnStale
-        ];
-      }
+      exports.useResource = useResource3;
       function useResourceState(resource, initialData, client) {
         let data = void 0;
         if (initialData) {
@@ -22952,9 +22923,6 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         }
         const [resourceState, setResourceState] = (0, react_1.useState)(data);
         return [resourceState, setResourceState];
-      }
-      function isUseResourceOptions(input) {
-        return input.mode === "PUT" || input.mode === "POST";
       }
       function dataToState(data, client) {
         return new ketting_1.HalState({
@@ -22974,9 +22942,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       "use strict";
       Object.defineProperty(exports, "__esModule", { value: true });
       exports.withResource = void 0;
-      var React40 = require_react();
+      var React38 = require_react();
       function withResource(WrappedComponent) {
-        return class extends React40.Component {
+        return class extends React38.Component {
           constructor(props, children) {
             super(props, children);
             this.state = {
@@ -23003,7 +22971,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             });
           }
           render() {
-            return React40.createElement(WrappedComponent, { resourceState: this.state.resourceState, data: this.state.data, ...this.props });
+            return React38.createElement(WrappedComponent, { resourceState: this.state.resourceState, data: this.state.data, ...this.props });
           }
         };
       }
@@ -23017,10 +22985,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       "use strict";
       Object.defineProperty(exports, "__esModule", { value: true });
       exports.RequireLogin = void 0;
-      var React40 = require_react();
+      var React38 = require_react();
       var use_client_1 = require_use_client();
       var ketting_1 = require_ketting_min();
-      var { useEffect: useEffect14, useState: useState10 } = React40;
+      var { useEffect: useEffect14, useState: useState10 } = React38;
       var LOCALSTORAGEKEY = "ketting-auth:3";
       var RequireLogin = (props) => {
         const [isAuthenticated, setAuthenticated] = useState10(false);
@@ -23090,7 +23058,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           });
         }, [client]);
         if (isAuthenticated) {
-          return React40.createElement(React40.Fragment, null, props.children);
+          return React38.createElement(React38.Fragment, null, props.children);
         }
         const processCodeFromUrl = async (code, state) => {
           client.use((0, ketting_1.oauth2)({
@@ -23116,7 +23084,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         const storeKettingCredentialsInLocalStorage = async (token) => {
           window.localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(token));
         };
-        return React40.createElement(React40.Fragment, null, props.authenticatingComponent ? props.authenticatingComponent : React40.createElement("div", { className: "authenticating" }, React40.createElement("header", null, React40.createElement("h1", null, "Authenticating"))));
+        return React38.createElement(React38.Fragment, null, props.authenticatingComponent ? props.authenticatingComponent : React38.createElement("div", { className: "authenticating" }, React38.createElement("header", null, React38.createElement("h1", null, "Authenticating"))));
       };
       exports.RequireLogin = RequireLogin;
       function getAuthorizeUri(props) {
@@ -23268,7 +23236,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (true) {
         (function() {
           "use strict";
-          var React40 = require_react();
+          var React38 = require_react();
           var _assign = require_object_assign();
           var REACT_ELEMENT_TYPE = 60103;
           var REACT_PORTAL_TYPE = 60106;
@@ -23325,7 +23293,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             }
             return null;
           }
-          var ReactSharedInternals = React40.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React38.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -24184,7 +24152,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           var ContextProvider = REACT_PROVIDER_TYPE;
           var Element2 = REACT_ELEMENT_TYPE;
           var ForwardRef = REACT_FORWARD_REF_TYPE;
-          var Fragment3 = REACT_FRAGMENT_TYPE;
+          var Fragment2 = REACT_FRAGMENT_TYPE;
           var Lazy = REACT_LAZY_TYPE;
           var Memo = REACT_MEMO_TYPE;
           var Portal = REACT_PORTAL_TYPE;
@@ -24243,7 +24211,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           exports.ContextProvider = ContextProvider;
           exports.Element = Element2;
           exports.ForwardRef = ForwardRef;
-          exports.Fragment = Fragment3;
+          exports.Fragment = Fragment2;
           exports.Lazy = Lazy;
           exports.Memo = Memo;
           exports.Portal = Portal;
@@ -24872,9 +24840,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 
   // src/app.tsx
   var ReactDOM4 = __toESM(require_react_dom());
-  var React39 = __toESM(require_react());
+  var React37 = __toESM(require_react());
   var import_ketting = __toESM(require_ketting_min());
-  var import_react_ketting5 = __toESM(require_dist());
+  var import_react_ketting3 = __toESM(require_dist());
 
   // node_modules/react-router-dom/index.js
   var import_react2 = __toESM(require_react());
@@ -28210,119 +28178,39 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // src/components/ResourcePage.tsx
-  var React36 = __toESM(require_react());
-  var import_react_ketting3 = __toESM(require_dist());
-
-  // src/components/CollectionLinks.tsx
   var React34 = __toESM(require_react());
   var import_react_ketting = __toESM(require_dist());
-
-  // src/resource-util.ts
-  function getTitle(resourceState) {
-    var _a;
-    let title;
-    title = resourceState.data.title;
-    if (!title)
-      title = resourceState.data.name;
-    if (!title)
-      title = (_a = resourceState.links.get("self")) == null ? void 0 : _a.title;
-    if (!title)
-      title = resourceState.uri;
-    return title;
-  }
-
-  // src/components/CollectionLinks.tsx
-  function CollectionLinks(props) {
-    const { items } = (0, import_react_ketting.useCollection)(props.resource);
-    if (!items)
-      return null;
-    return /* @__PURE__ */ React34.createElement("ul", null, items.map((item) => /* @__PURE__ */ React34.createElement(CollectionItem, {
-      resource: item,
-      key: item.uri
-    })));
-  }
-  function CollectionItem(props) {
-    const { loading, error, resourceState } = (0, import_react_ketting.useResource)(props.resource);
-    if (loading)
-      return /* @__PURE__ */ React34.createElement("div", null, "Loading...");
-    if (error)
-      return /* @__PURE__ */ React34.createElement("div", {
-        className: "error"
-      }, error.message);
-    return /* @__PURE__ */ React34.createElement("li", null, /* @__PURE__ */ React34.createElement(Link, {
-      to: resourceState.uri
-    }, getTitle(resourceState)));
-  }
-
-  // src/components/BodyProperties.tsx
-  var React35 = __toESM(require_react());
-  var import_react_ketting2 = __toESM(require_dist());
-  function BodyProperties(props) {
-    const { loading, data } = (0, import_react_ketting2.useResource)(props.resource);
-    if (loading)
-      return null;
-    if (!data)
-      null;
-    if (typeof data === "string") {
-      return /* @__PURE__ */ React35.createElement("section", null, /* @__PURE__ */ React35.createElement("h1", null, "Contents"), /* @__PURE__ */ React35.createElement("div", null, data));
-    }
-    const entries = Object.entries(data);
-    if (!entries)
-      return null;
-    return /* @__PURE__ */ React35.createElement("section", null, /* @__PURE__ */ React35.createElement("h1", null, "Contents"), /* @__PURE__ */ React35.createElement("table", null, /* @__PURE__ */ React35.createElement("tbody", null, /* @__PURE__ */ React35.createElement("tr", {
-      key: "head"
-    }, /* @__PURE__ */ React35.createElement("th", null, "Key"), /* @__PURE__ */ React35.createElement("th", null, "Value")), entries.map(([key, value]) => {
-      let newVal = "Cannot render this type";
-      if (typeof value === "string" || typeof value === "number") {
-        newVal = value;
-      }
-      return /* @__PURE__ */ React35.createElement("tr", {
-        key
-      }, /* @__PURE__ */ React35.createElement("th", null, key), /* @__PURE__ */ React35.createElement("td", null, newVal));
-    }))));
-  }
-
-  // src/components/ResourcePage.tsx
   function ResourcePage() {
     const location = useLocation();
     console.log(location.pathname);
-    const { loading, error, resourceState, resource } = (0, import_react_ketting3.useResource)(location.pathname);
-    if (loading)
-      return /* @__PURE__ */ React36.createElement("div", null, "Loading...");
-    if (error)
-      return /* @__PURE__ */ React36.createElement("div", {
-        className: "error"
-      }, error.message);
-    return /* @__PURE__ */ React36.createElement(React36.Fragment, null, /* @__PURE__ */ React36.createElement("h1", null, getTitle(resourceState)), /* @__PURE__ */ React36.createElement("div", null, /* @__PURE__ */ React36.createElement(CollectionLinks, {
-      resource
-    }), /* @__PURE__ */ React36.createElement(BodyProperties, {
-      resource
-    })));
+    const { loading } = (0, import_react_ketting.useCollection)(location.pathname);
+    console.log(`Render: Loading: ${loading}`);
+    return /* @__PURE__ */ React34.createElement("div", null, "hello");
   }
 
   // src/components/NavBar.tsx
-  var React38 = __toESM(require_react());
+  var React36 = __toESM(require_react());
 
   // src/components/NavigationLinks.tsx
-  var React37 = __toESM(require_react());
-  var import_react_ketting4 = __toESM(require_dist());
+  var React35 = __toESM(require_react());
+  var import_react_ketting2 = __toESM(require_dist());
   function NavigationLinks() {
-    const { loading, error, resourceState } = (0, import_react_ketting4.useResource)("/");
+    const { loading, error, resourceState } = (0, import_react_ketting2.useResource)("/");
     if (loading) {
-      return /* @__PURE__ */ React37.createElement("div", null, "Loading");
+      return /* @__PURE__ */ React35.createElement("div", null, "Loading");
     }
     if (error) {
-      return /* @__PURE__ */ React37.createElement("div", {
+      return /* @__PURE__ */ React35.createElement("div", {
         className: "error"
       }, error.message);
     }
     const links = resourceState.links.getAll();
-    return /* @__PURE__ */ React37.createElement(Navbar_default.Collapse, {
+    return /* @__PURE__ */ React35.createElement(Navbar_default.Collapse, {
       id: "basic-navbar-nav",
       role: "navigation"
-    }, /* @__PURE__ */ React37.createElement(Nav_default2, {
+    }, /* @__PURE__ */ React35.createElement(Nav_default2, {
       className: "me-auto"
-    }, links.map((link) => /* @__PURE__ */ React37.createElement(NavItem2, {
+    }, links.map((link) => /* @__PURE__ */ React35.createElement(NavItem2, {
       link,
       key: link.href
     }))));
@@ -28343,34 +28231,34 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         title = "People";
         break;
     }
-    return /* @__PURE__ */ React37.createElement(Nav_default2.Link, null, /* @__PURE__ */ React37.createElement(Link, {
+    return /* @__PURE__ */ React35.createElement(Nav_default2.Link, null, /* @__PURE__ */ React35.createElement(Link, {
       to: link.href
     }, title));
   }
 
   // src/components/NavBar.tsx
   function NavBar() {
-    return /* @__PURE__ */ React38.createElement(Navbar_default, {
+    return /* @__PURE__ */ React36.createElement(Navbar_default, {
       bg: "primary",
       expand: "md",
       variant: "dark"
-    }, /* @__PURE__ */ React38.createElement(Container_default, null, /* @__PURE__ */ React38.createElement(Navbar_default.Toggle, {
+    }, /* @__PURE__ */ React36.createElement(Container_default, null, /* @__PURE__ */ React36.createElement(Navbar_default.Toggle, {
       "aria-controlers": "basic-navbar-nav"
-    }), /* @__PURE__ */ React38.createElement(Navbar_default.Brand, null, "Time Tracker"), /* @__PURE__ */ React38.createElement(NavigationLinks, null)));
+    }), /* @__PURE__ */ React36.createElement(Navbar_default.Brand, null, "Time Tracker"), /* @__PURE__ */ React36.createElement(NavigationLinks, null)));
   }
 
   // src/app.tsx
   function App() {
     const client = new import_ketting.Client("http://localhost:8901/");
-    return /* @__PURE__ */ React39.createElement(import_react_ketting5.KettingProvider, {
+    return /* @__PURE__ */ React37.createElement(import_react_ketting3.KettingProvider, {
       client
-    }, /* @__PURE__ */ React39.createElement(BrowserRouter, null, /* @__PURE__ */ React39.createElement(NavBar, null), /* @__PURE__ */ React39.createElement(Container_default, null, /* @__PURE__ */ React39.createElement(Routes, null, /* @__PURE__ */ React39.createElement(Route, {
+    }, /* @__PURE__ */ React37.createElement(BrowserRouter, null, /* @__PURE__ */ React37.createElement(NavBar, null), /* @__PURE__ */ React37.createElement(Container_default, null, /* @__PURE__ */ React37.createElement(Routes, null, /* @__PURE__ */ React37.createElement(Route, {
       path: "*",
-      element: /* @__PURE__ */ React39.createElement(ResourcePage, null)
+      element: /* @__PURE__ */ React37.createElement(ResourcePage, null)
     })))));
   }
   document.addEventListener("DOMContentLoaded", () => {
-    ReactDOM4.render(/* @__PURE__ */ React39.createElement(App, null), document.getElementById("app-root"));
+    ReactDOM4.render(/* @__PURE__ */ React37.createElement(App, null), document.getElementById("app-root"));
   });
 })();
 /*
