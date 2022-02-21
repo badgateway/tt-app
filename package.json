@@ -51,6 +51,7 @@
     ]
   },
   "dependencies": {
-    "react-bootstrap": "^2.1.0"
+    "@types/node": "^16.11.21",
+    "ketting": "^7.3.0"
   }
 }
