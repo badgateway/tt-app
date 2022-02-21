@@ -7,6 +7,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ResourcePage } from './components/ResourcePage';
 import { NavBar } from './components/NavBar';
 
+import { ClientsPage } from './components/clients/ClientsPage';
+import { ClientNewPage } from './components/clients/ClientNewPage';
+
 function App() {
 
   const client = new Client('http://localhost:8901/'); 
@@ -16,6 +19,8 @@ function App() {
     <NavBar />
     <div className="container">
       <Routes>
+        <Route path="/client" element={<ClientsPage />}/>
+        <Route path="/client/new" element={<ClientNewPage />}/>
         <Route path="*" element={<ResourcePage />}/>
       </Routes>
     </div>

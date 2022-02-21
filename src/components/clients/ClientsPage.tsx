@@ -2,11 +2,12 @@ import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useResource } from 'react-ketting';
 
-import { CollectionLinks } from './CollectionLinks';
-import { BodyProperties } from './BodyProperties';
-import { getTitle } from '../resource-util';
+import { CollectionLinks } from '../CollectionLinks';
+import { getTitle } from '../../resource-util';
 
-export function ResourcePage() {
+import { Link } from 'react-router-dom';
+
+export function ClientsPage() {
 
   const location = useLocation();
   console.log(location.pathname);
@@ -20,7 +21,9 @@ export function ResourcePage() {
     <div className="page-header"><h1>{getTitle(resourceState)}</h1></div>
     <div>
       <CollectionLinks resource={resource} />
-      <BodyProperties resource={resource} />
+    </div>
+    <div>
+      <Link className="btn btn-primary" to='/client/new'>Create new client</Link>
     </div>
   </>;
 
