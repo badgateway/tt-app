@@ -11,4 +11,4 @@
 /.nyc_output
 
 # esbuild output
-./public/script.js
+/public/script.js

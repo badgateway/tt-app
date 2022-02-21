@@ -1,16 +1,22 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { NavigationLinks } from './NavigationLinks';
-import { Navbar, Container } from 'react-bootstrap';
 
 export function NavBar() {
 
-  return  <Navbar bg="primary" expand="md" variant="dark">
-    <Container>
-        <Navbar.Toggle aria-controlers="basic-navbar-nav" />
-        <Navbar.Brand>Time Tracker</Navbar.Brand>
-        <NavigationLinks />
-    </Container>
+  const [open, setOpen] = useState(false);
+  
+  const toggleOpen = () => setOpen(!open);
 
-  </Navbar>;
+
+  return  <nav className="navbar navbar-expand-md bg-primary navbar-dark">
+    <div className="container">
+        <button className="navbar-toggler" type="button" onClick={toggleOpen}>
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <a className="navbar-brand">Time Tracker</a>
+        <NavigationLinks open={open}/>
+    </div>
+  </nav>;
 
 }

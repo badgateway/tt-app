@@ -3,7 +3,6 @@ import * as React from 'react';
 import { Client } from 'ketting';
 import { KettingProvider } from 'react-ketting';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
 
 import { ResourcePage } from './components/ResourcePage';
 import { NavBar } from './components/NavBar';
@@ -15,11 +14,11 @@ function App() {
   return <KettingProvider client={client}>
     <BrowserRouter>
     <NavBar />
-    <Container>
+    <div className="container">
       <Routes>
         <Route path="*" element={<ResourcePage />}/>
       </Routes>
-    </Container>
+    </div>
     </BrowserRouter>
   </KettingProvider>;
 
