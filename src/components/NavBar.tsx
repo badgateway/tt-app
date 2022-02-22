@@ -9,7 +9,7 @@ export function NavBar() {
   const toggleOpen = () => setOpen(!open);
 
 
-  return  <nav className="navbar navbar-expand-md bg-primary navbar-dark">
+  return  <nav className="navbar navbar-expand-md bg-primary navbar-dark fixed-top">
     <div className="container">
         <button className="navbar-toggler" type="button" onClick={toggleOpen}>
           <span className="navbar-toggler-icon"></span>
