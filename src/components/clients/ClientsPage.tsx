@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useResource } from 'react-ketting';
+import { Client } from '@badgateway/tt-types';
 
 import { CollectionLinks } from '../CollectionLinks';
 import { getTitle } from '../../resource-util';
@@ -11,7 +12,7 @@ export function ClientsPage() {
 
   const location = useLocation();
 
-  const { loading, error, resourceState, resource } = useResource(location.pathname);
+  const { loading, error, resourceState, resource } = useResource<Client>(location.pathname);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="error">{error.message}</div>;

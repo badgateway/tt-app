@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { useResource } from 'react-ketting';
 import { useNavigate, useLocation } from 'react-router-dom';
-
-type Client = {
-  name: string;
-}
+import { Client } from '@badgateway/tt-types';
 
 export function ClientPage() {
 
