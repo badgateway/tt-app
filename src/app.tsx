@@ -9,6 +9,7 @@ import { NavBar } from './components/NavBar';
 
 import { ClientsPage } from './components/clients/ClientsPage';
 import { ClientNewPage } from './components/clients/ClientNewPage';
+import { ClientPage } from './components/clients/ClientPage';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/client" element={<ClientsPage />}/>
         <Route path="/client/new" element={<ClientNewPage />}/>
+        <Route path="/client/:id" element={<ClientPage />}/>
         <Route path="*" element={<ResourcePage />}/>
       </Routes>
     </div>

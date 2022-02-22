@@ -25,8 +25,10 @@ export function CollectionItem(props: Props) {
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="error">{error.message}</div>;
 
+  const target = new URL(resourceState.uri).pathname;
+
   return <li>
-    <Link to={resourceState.uri}>
+    <Link to={target}>
      {getTitle(resourceState)}
     </Link>
   </li>; 

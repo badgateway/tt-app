@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 export function ClientsPage() {
 
   const location = useLocation();
-  console.log(location.pathname);
 
   const { loading, error, resourceState, resource } = useResource(location.pathname);
 
