@@ -13,6 +13,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
 
     strategy:
       matrix:
@@ -23,7 +26,9 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
+        registry-url: 'https://npm.pkg.github.com'
+        scope: '@badgateway'
         node-version: ${{ matrix.node-version }}
-    - run: npm i
+    - run: npm ci
     - run: npm run build --if-present
     - run: npm run lint
