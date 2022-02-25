@@ -6,8 +6,8 @@
   "scripts": {
     "prepublishOnly": "tsc",
     "build": "tsc",
-    "start": "./serve.sh",
-    "start:watch": "./serve.sh",
+    "start": "./serve.js",
+    "start:watch": "./serve.js",
     "watch": "tsc --watch",
     "lint": "eslint --quiet 'src/*.ts'",
     "fix": "eslint --quiet 'src/**/*.ts' --fix"

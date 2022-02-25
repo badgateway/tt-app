@@ -11,6 +11,10 @@ import { ClientsPage } from './components/clients/ClientsPage';
 import { ClientNewPage } from './components/clients/ClientNewPage';
 import { ClientPage } from './components/clients/ClientPage';
 
+import { ProjectsPage } from './components/projects/ProjectsPage';
+import { ProjectNewPage } from './components/projects/ProjectNewPage';
+import { ProjectPage } from './components/projects/ProjectPage';
+
 function App() {
 
   const client = new Client('http://localhost:8901/'); 
@@ -23,6 +27,9 @@ function App() {
         <Route path="/client" element={<ClientsPage />}/>
         <Route path="/client/new" element={<ClientNewPage />}/>
         <Route path="/client/:id" element={<ClientPage />}/>
+        <Route path="/project" element={<ProjectsPage />}/>
+        <Route path="/project/new" element={<ProjectNewPage />}/>
+        <Route path="/project/:id" element={<ProjectPage />}/>
         <Route path="*" element={<ResourcePage />}/>
       </Routes>
     </div>
