@@ -11,7 +11,7 @@ type Props = {
 
 export function PersonWeeklyEntries(props: Props) {
 
-  const { loading, error, resourceState } = useResource(props.resource);
+  const { loading, error } = useResource(props.resource);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="error">{error.message}</div>;
