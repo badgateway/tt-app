@@ -7,13 +7,16 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ResourcePage } from './components/ResourcePage';
 import { NavBar } from './components/NavBar';
 
-import { ClientsPage } from './components/clients/ClientsPage';
-import { ClientNewPage } from './components/clients/ClientNewPage';
-import { ClientPage } from './components/clients/ClientPage';
+import { ClientsPage } from './components/client/ClientsPage';
+import { ClientNewPage } from './components/client/ClientNewPage';
+import { ClientPage } from './components/client/ClientPage';
 
-import { ProjectsPage } from './components/projects/ProjectsPage';
-import { ProjectNewPage } from './components/projects/ProjectNewPage';
-import { ProjectPage } from './components/projects/ProjectPage';
+import { PersonPage } from './components/person/PersonPage';
+import { PeoplePage } from './components/person/PeoplePage';
+
+import { ProjectsPage } from './components/project/ProjectsPage';
+import { ProjectNewPage } from './components/project/ProjectNewPage';
+import { ProjectPage } from './components/project/ProjectPage';
 
 function App() {
 
@@ -27,9 +30,15 @@ function App() {
         <Route path="/client" element={<ClientsPage />}/>
         <Route path="/client/new" element={<ClientNewPage />}/>
         <Route path="/client/:id" element={<ClientPage />}/>
+
+        <Route path="/person" element={<PeoplePage />}/>
+        <Route path="/person/:id" element={<PersonPage />}/>
+
         <Route path="/project" element={<ProjectsPage />}/>
         <Route path="/project/new" element={<ProjectNewPage />}/>
         <Route path="/project/:id" element={<ProjectPage />}/>
+
+
         <Route path="*" element={<ResourcePage />}/>
       </Routes>
     </div>

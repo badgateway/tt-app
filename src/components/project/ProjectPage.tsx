@@ -1,25 +1,27 @@
 import * as React from 'react';
 import { useResource } from 'react-ketting';
-import { useNavigate } from 'react-router-dom';
-import { ClientSelect } from '../clients/ClientSelect';
+import { resolve } from 'ketting';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Project } from '@badgateway/tt-types';
 
-export function ProjectNewPage() {
+import { ClientSelect } from '../client/ClientSelect';
 
-  const { submit, resourceState, setResourceState } = useResource('/project', {
-    mode: 'POST',
-    initialState: {
-      name: '',
-    },
-  });
+export function ProjectPage() {
 
+  const location = useLocation();
+  const { loading, error, resourceState, setResourceState, submit } = useResource<Project>(location.pathname);
   const navigation = useNavigate();
 
-  const createProject = async (ev: any) => {
-    ev.preventDefault();
-    submit(); 
-    navigation('/project');
-  };
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div className="error">{error.message}</div>;
 
+  const updateProject = async (ev: any) => {
+
+    ev.preventDefault();
+    submit();
+    navigation('/project');
+
+  };
   const setName = (name:string) => {
     resourceState.data.name = name;
     setResourceState(resourceState);
@@ -28,20 +30,21 @@ export function ProjectNewPage() {
     resourceState.links.set('client', clientHref);
   }
 
+  const clientLink = resourceState.links.get('client');
+  const clientUrl = clientLink ? resolve(clientLink) : undefined;
+
   return <>
-    <div className="page-header"><h1>New Project</h1></div>
-    <form onSubmit={createProject}>
+    <div className="page-header"><h1>{resourceState.data.name}</h1></div>
+    <form onSubmit={updateProject}>
       <div className="mb-3">
         <label htmlFor="formProjectName" className="form-label">Project name</label>
         <input
           type="text"
           className="form-control"
           id="formProjectName"
-          placeholder="My App"
           defaultValue={resourceState.data.name}
           onChange={ev => setName(ev.target.value)}
           minLength={2}
-          required
         />
       </div>
       <div className="mb-3">
@@ -50,10 +53,11 @@ export function ProjectNewPage() {
           className="form-select"
           id="formProjectClient"
           onChange={clientHref => setClient(clientHref)}
+          defaultValue={clientUrl} 
         />
       </div>
       <div>
-        <button type="submit" className="btn btn-primary">Create</button>
+        <button type="submit" className="btn btn-primary">Save</button>
       </div>
     </form>
   </>;
