@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Resource } from 'ketting';
 import { DateTime } from 'luxon';
 import { useCollection, useResource } from 'react-ketting';
 
 import { Entry } from '@badgateway/tt-types';
+
+import { ProjectSelect } from '../project/ProjectSelect';
 
 type DayProps = {
   resource: Resource;
@@ -39,7 +41,7 @@ export function EntryDay(props: DayProps) {
     </h2>
     <div className={'accordion-collapse collapse' + show}> 
       <div className="accordion-body">
-        <table className="table table-striped">
+        <table className="table table-striped table-sm">
           <thead>
              <tr>
               <th scope="col">Project</th>
@@ -63,7 +65,9 @@ type EntryDayItemProps = {
 
 function EntryDayItem(props: EntryDayItemProps) {
 
-  const { resourceState, loading, error } = useResource<Entry>(props.resource);
+  const { resourceState, setResourceState, loading, error, submit } = useResource<Entry>(props.resource);
+
+  const delayedSubmitTimeout = useRef<null | ReturnType<typeof setTimeout>>(null);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -73,12 +77,69 @@ function EntryDayItem(props: EntryDayItemProps) {
     return <div>Error: {error.message}</div>;
   }
 
-  const projectName = resourceState.links.get('project')?.title ?? 'No project name :(';
+  const delayedSubmit = () => {
+
+    if (delayedSubmitTimeout.current) {
+      clearTimeout(delayedSubmitTimeout.current);
+    }
+
+    delayedSubmitTimeout.current = setTimeout(
+      () => submit(),
+      5000
+    );
+
+  }
+
+  const setDescription = (description: string) => {
+    
+    resourceState.data.description = description;
+    setResourceState(resourceState);
+    delayedSubmit();
+
+  }
+  const setMinutes = (minutes: number) => {
+    
+    resourceState.data.minutes = minutes;
+    setResourceState(resourceState);
+    delayedSubmit();
+
+  }
+  const setProject = (projectHref: string) => {
+    
+    resourceState.links.set('project', projectHref);
+    setResourceState(resourceState);
+    delayedSubmit();
+
+  }
 
   return <tr>
-    <td>{projectName}</td>
-    <td>{(resourceState.data.minutes / 60).toFixed(2)}</td>
-    <td>{resourceState.data.description}</td>
+    <td>
+      <ProjectSelect
+        value={resourceState.links.get('project')?.href}
+        onChange={projectHref => setProject(projectHref)}
+        className="form-control"
+      />
+    </td>
+    <td>
+      <input
+        type="number"
+        value={(resourceState.data.minutes / 60).toFixed(2)}
+        className="form-control"
+        min="0.25"
+        max="24"
+        step="0.25"
+        placeholder="1"
+        onChange={ev => setMinutes(Math.round(ev.target.valueAsNumber * 60))}
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        value={resourceState.data.description}
+        className="form-control"
+        onChange={ev => setDescription(ev.target.value)} 
+      />
+    </td>
   </tr>;
 
 }
