@@ -29,6 +29,7 @@
   "homepage": "https://github.com/badgateway/tt-app#readme",
   "devDependencies": {
     "@badgateway/tt-types": "^0.10.0",
+    "@types/luxon": "^2.3.0",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
@@ -50,6 +51,7 @@
   },
   "dependencies": {
     "@types/node": "^16.11.21",
-    "ketting": "^7.3.0"
+    "ketting": "^7.3.0",
+    "luxon": "^2.3.1"
   }
 }
