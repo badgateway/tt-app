@@ -9,8 +9,8 @@
     "start": "./serve.js",
     "start:watch": "./serve.js",
     "watch": "tsc --watch",
-    "lint": "eslint --quiet 'src/*.ts'",
-    "fix": "eslint --quiet 'src/**/*.ts' --fix"
+    "lint": "eslint --quiet 'src/**/*.ts?'",
+    "fix": "eslint --quiet 'src/**/*.ts?' --fix"
   },
   "repository": {
     "type": "git",

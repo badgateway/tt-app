@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { getTitle } from '../resource-util';
 
 type Props = {
-  resource: Resource
+  resource: Resource;
 }
 
 export function CollectionLinks(props: Props) {
@@ -29,8 +29,8 @@ export function CollectionItem(props: Props) {
 
   return <li>
     <Link to={target}>
-     {getTitle(resourceState)}
+      {getTitle(resourceState)}
     </Link>
-  </li>; 
+  </li>;
 
 }

@@ -22,10 +22,10 @@ export function PersonPage() {
   switch(activeTab) {
 
     case 'weekly-entries' :
-      tabContents = <PersonWeeklyEntries resource={resource} />
+      tabContents = <PersonWeeklyEntries resource={resource} />;
       break;
     case 'edit' :
-      tabContents = <PersonEditForm resource={resource} />
+      tabContents = <PersonEditForm resource={resource} />;
       break;
   }
 
@@ -48,7 +48,7 @@ export function PersonPage() {
 
 type TabProps = {
   label: string;
-  name: Tab,
+  name: Tab;
   activeTab: Tab;
   setActiveTab: (name: Tab) => void;
 }

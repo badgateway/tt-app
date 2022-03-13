@@ -9,7 +9,6 @@ import { getTitle } from '../resource-util';
 export function ResourcePage() {
 
   const location = useLocation();
-  console.log(location.pathname);
 
   const { loading, error, resourceState, resource } = useResource(location.pathname);
 

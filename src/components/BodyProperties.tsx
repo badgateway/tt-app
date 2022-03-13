@@ -3,7 +3,7 @@ import { useResource } from 'react-ketting';
 import { Resource } from 'ketting';
 
 type Props = {
-  resource: Resource
+  resource: Resource;
 }
 
 export function BodyProperties(props: Props) {
@@ -17,7 +17,7 @@ export function BodyProperties(props: Props) {
     return <section>
       <h1>Contents</h1>
       <div>{data}</div>
-    </section>
+    </section>;
   }
 
   const entries = Object.entries(data);
@@ -39,6 +39,6 @@ export function BodyProperties(props: Props) {
       </tbody>
     </table>
 
-  </section>
+  </section>;
 
 }

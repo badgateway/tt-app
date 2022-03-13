@@ -27,7 +27,7 @@ export function ClientPage() {
       name
     });
 
-  }
+  };
 
   return <>
     <div className="page-header"><h1>{data.name}</h1></div>

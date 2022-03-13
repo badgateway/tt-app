@@ -6,9 +6,9 @@ import { useCollection, useResource } from 'react-ketting';
 import { Client } from '@badgateway/tt-types';
 
 type Props = {
-  className?: string,
-  id?: string,
-  defaultValue?: string,
+  className?: string;
+  id?: string;
+  defaultValue?: string;
   onChange?: (clientHref: string) => void;
 }
 
@@ -27,16 +27,16 @@ export function ClientSelect(props: Props) {
       onChange(ev.target.value);
     }
 
-  }
+  };
 
   return <select {...passThrough} onChange={changeHandler}>
     { items.map( item => <ClientOption resource={item} key={item.uri} />) }
-  </select>
+  </select>;
 }
 
 
 type OptionProps = {
-  resource: Resource<Client>
+  resource: Resource<Client>;
 };
 
 function ClientOption(props: OptionProps) {

@@ -16,14 +16,14 @@ export function PersonNewPage() {
 
   const createPerson = async (ev: any) => {
     ev.preventDefault();
-    submit(); 
+    submit();
     navigation('/person');
   };
 
   const setName = (name:string) => {
     resourceState.data.name = name;
     setResourceState(resourceState);
-  }
+  };
 
   return <>
     <div className="page-header"><h1>New User</h1></div>

@@ -25,10 +25,10 @@ export function ProjectPage() {
   const setName = (name:string) => {
     resourceState.data.name = name;
     setResourceState(resourceState);
-  }
+  };
   const setClient = (clientHref: string) => {
     resourceState.links.set('client', clientHref);
-  }
+  };
 
   const clientLink = resourceState.links.get('client');
   const clientUrl = clientLink ? resolve(clientLink) : undefined;
@@ -53,7 +53,7 @@ export function ProjectPage() {
           className="form-select"
           id="formProjectClient"
           onChange={clientHref => setClient(clientHref)}
-          defaultValue={clientUrl} 
+          defaultValue={clientUrl}
         />
       </div>
       <div>
