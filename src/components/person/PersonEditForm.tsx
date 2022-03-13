@@ -27,7 +27,7 @@ export function PersonEditForm(props: Props) {
   const setName = (name:string) => {
     resourceState.data.name = name;
     setResourceState(resourceState);
-  }
+  };
 
   return <form onSubmit={updatePerson}>
     <div className="mb-3">

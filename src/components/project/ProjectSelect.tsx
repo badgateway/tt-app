@@ -6,10 +6,10 @@ import { useCollection, useResource } from 'react-ketting';
 import { Project } from '@badgateway/tt-types';
 
 type Props = {
-  className?: string,
-  id?: string,
-  defaultValue?: string,
-  value?: string,
+  className?: string;
+  id?: string;
+  defaultValue?: string;
+  value?: string;
   onChange?: (projectHref: string) => void;
 }
 
@@ -28,16 +28,16 @@ export function ProjectSelect(props: Props) {
       onChange(ev.target.value);
     }
 
-  }
+  };
 
   return <select {...passThrough} onChange={changeHandler}>
     { items.map( item => <ProjectOption resource={item} key={item.uri} />) }
-  </select>
+  </select>;
 }
 
 
 type OptionProps = {
-  resource: Resource<Project>
+  resource: Resource<Project>;
 };
 
 function ProjectOption(props: OptionProps) {

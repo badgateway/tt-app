@@ -27,10 +27,10 @@ export function PersonWeeklyEntries(props: Props) {
 
   const weekDec = () => {
     setCurrentDate(currentDate.minus({'weeks': 1}));
-  }
+  };
   const weekInc = () => {
     setCurrentDate(currentDate.plus({'weeks': 1}));
-  }
+  };
 
   return <>
     <ul className="pagination justify-content-center">

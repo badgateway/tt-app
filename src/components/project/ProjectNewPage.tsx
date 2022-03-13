@@ -16,17 +16,17 @@ export function ProjectNewPage() {
 
   const createProject = async (ev: any) => {
     ev.preventDefault();
-    submit(); 
+    submit();
     navigation('/project');
   };
 
   const setName = (name:string) => {
     resourceState.data.name = name;
     setResourceState(resourceState);
-  }
+  };
   const setClient = (clientHref: string) => {
     resourceState.links.set('client', clientHref);
-  }
+  };
 
   return <>
     <div className="page-header"><h1>New Project</h1></div>

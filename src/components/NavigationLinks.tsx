@@ -17,7 +17,7 @@ export function NavigationLinks(props: { open: boolean }) {
 
   const links = resourceState.links.getAll();
 
-  return <div className={`navbar-collapse ` + (props.open?'':'collapse')}>
+  return <div className={'navbar-collapse ' + (props.open?'':'collapse')}>
     <ul className="navbar-nav me-auto">
       {links.map( link => <NavItem link={link} key={link.href} /> )}
     </ul>
@@ -26,7 +26,7 @@ export function NavigationLinks(props: { open: boolean }) {
 }
 
 type NavItemProps = {
-  link: Link
+  link: Link;
 };
 
 export function NavItem({link}: NavItemProps) {
@@ -34,7 +34,7 @@ export function NavItem({link}: NavItemProps) {
   let title: string = link.title ?? link.rel;
 
   switch(link.rel) {
-    case 'schema-collection': 
+    case 'schema-collection':
       return null;
     case 'client-collection' :
       title = 'Clients';
@@ -44,7 +44,7 @@ export function NavItem({link}: NavItemProps) {
       break;
     case 'person-collection' :
       title = 'People';
-      break
+      break;
   }
   return <li className="nav-item"><RouterLink to={link.href} className="nav-link">{title}</RouterLink></li>;
 }

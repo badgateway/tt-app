@@ -31,7 +31,7 @@ export function EntryDay(props: DayProps) {
 
   const toggleOpen = () => {
     setOpen(!open);
-  }
+  };
 
   return <div className="accordion-item">
     <h2 className="accordion-header">
@@ -39,19 +39,19 @@ export function EntryDay(props: DayProps) {
         {props.date.weekdayLong}, {props.date.monthLong} {props.date.day}{ordinal(props.date.day)}
       </button>
     </h2>
-    <div className={'accordion-collapse collapse' + show}> 
+    <div className={'accordion-collapse collapse' + show}>
       <div className="accordion-body">
         <table className="table table-striped table-sm">
           <thead>
-             <tr>
+            <tr>
               <th scope="col">Project</th>
               <th scope="col">Hours</th>
               <th scope="col">Description</th>
-             </tr> 
-           </thead>
-           <tbody>
-              {items.map( item => <EntryDayItem resource={item} />)}
-           </tbody>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map( item => <EntryDayItem resource={item} />)}
+          </tbody>
         </table>
       </div>
     </div>
@@ -88,29 +88,29 @@ function EntryDayItem(props: EntryDayItemProps) {
       5000
     );
 
-  }
+  };
 
   const setDescription = (description: string) => {
-    
+
     resourceState.data.description = description;
     setResourceState(resourceState);
     delayedSubmit();
 
-  }
+  };
   const setMinutes = (minutes: number) => {
-    
+
     resourceState.data.minutes = minutes;
     setResourceState(resourceState);
     delayedSubmit();
 
-  }
+  };
   const setProject = (projectHref: string) => {
-    
+
     resourceState.links.set('project', projectHref);
     setResourceState(resourceState);
     delayedSubmit();
 
-  }
+  };
 
   return <tr>
     <td>
@@ -137,7 +137,7 @@ function EntryDayItem(props: EntryDayItemProps) {
         type="text"
         value={resourceState.data.description}
         className="form-control"
-        onChange={ev => setDescription(ev.target.value)} 
+        onChange={ev => setDescription(ev.target.value)}
       />
     </td>
   </tr>;
@@ -153,6 +153,6 @@ function ordinal(input: number): string {
     case 1: return 'st';
     case 2: return 'rd';
     case 3: return 'nd';
-    default:  return 'th'
+    default:  return 'th';
   }
 }

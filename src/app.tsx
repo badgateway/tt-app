@@ -20,28 +20,28 @@ import { ProjectPage } from './components/project/ProjectPage';
 
 function App() {
 
-  const client = new Client('http://localhost:8901/'); 
+  const client = new Client('http://localhost:8901/');
 
   return <KettingProvider client={client}>
     <BrowserRouter>
-    <NavBar />
-    <div className="container">
-      <Routes>
-        <Route path="/client" element={<ClientsPage />}/>
-        <Route path="/client/new" element={<ClientNewPage />}/>
-        <Route path="/client/:id" element={<ClientPage />}/>
+      <NavBar />
+      <div className="container">
+        <Routes>
+          <Route path="/client" element={<ClientsPage />}/>
+          <Route path="/client/new" element={<ClientNewPage />}/>
+          <Route path="/client/:id" element={<ClientPage />}/>
 
-        <Route path="/person" element={<PeoplePage />}/>
-        <Route path="/person/:id" element={<PersonPage />}/>
+          <Route path="/person" element={<PeoplePage />}/>
+          <Route path="/person/:id" element={<PersonPage />}/>
 
-        <Route path="/project" element={<ProjectsPage />}/>
-        <Route path="/project/new" element={<ProjectNewPage />}/>
-        <Route path="/project/:id" element={<ProjectPage />}/>
+          <Route path="/project" element={<ProjectsPage />}/>
+          <Route path="/project/new" element={<ProjectNewPage />}/>
+          <Route path="/project/:id" element={<ProjectPage />}/>
 
 
-        <Route path="*" element={<ResourcePage />}/>
-      </Routes>
-    </div>
+          <Route path="*" element={<ResourcePage />}/>
+        </Routes>
+      </div>
     </BrowserRouter>
   </KettingProvider>;
 
