@@ -50,6 +50,7 @@ export function PersonWeeklyEntries(props: Props) {
           date={currentDate.plus({'days': val})}
           resource={resourceState.follow('entry-collection')}
           personResource={props.resource}
+          key={'day-' + val}
         />
       )}
     </div>
