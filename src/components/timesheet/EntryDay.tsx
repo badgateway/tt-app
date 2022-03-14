@@ -56,11 +56,12 @@ export function EntryDay(props: DayProps) {
             </tr>
           </thead>
           <tbody>
-            {items.map( item => <EntryDayItem resource={item} />)}
+            {items.map( item => <EntryDayItem resource={item} key={item.uri} />)}
             <EntryDayItemNew
               parentResource={props.resource}
               date={props.date}
               personResource={props.personResource}
+              key="new"
             />
           </tbody>
         </table>
@@ -81,11 +82,11 @@ function EntryDayItem(props: EntryDayItemProps) {
   const delayedSubmitTimeout = useRef<null | ReturnType<typeof setTimeout>>(null);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <tr><td colSpan={3}>Loading...</td></tr>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <tr><td colSpan={3}>Error: {error.message}</td></tr>;
   }
 
   const delayedSubmit = () => {

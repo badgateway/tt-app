@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Resource } from 'ketting';
-import { useCollection, useResource } from 'react-ketting';
+import { useCollection, useResource, useClient } from 'react-ketting';
 
 import { Project } from '@badgateway/tt-types';
 
@@ -16,8 +16,11 @@ type Props = {
 
 export function ProjectSelect(props: Props) {
 
+  const { onChange, showSelectProject, value, ...passThrough } = props;
+
   const { loading, items } = useCollection('/project');
-  const { onChange, showSelectProject, ...passThrough } = props;
+  const client = useClient();
+
 
   if (loading) {
     return <select {...passThrough}></select>;
@@ -31,8 +34,12 @@ export function ProjectSelect(props: Props) {
 
   };
 
-  return <select {...passThrough} onChange={changeHandler}>
-    { showSelectProject ? <option key="empty" selected disabled>Select Project</option> : null }
+  // This expands the 'value' to a full absolute url, which is needed
+  // for comparison.
+  const realValue = value ? client.go(value).uri : '';
+
+  return <select {...passThrough} onChange={changeHandler} value={realValue}>
+    { showSelectProject ? <option key="empty" disabled value=''>Select Project</option> : null }
     { items.map( item => <ProjectOption resource={item} key={item.uri} />) }
   </select>;
 }
