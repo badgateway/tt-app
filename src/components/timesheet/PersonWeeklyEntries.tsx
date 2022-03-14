@@ -46,7 +46,11 @@ export function PersonWeeklyEntries(props: Props) {
     </ul>
     <div className="accordion">
       {[0, 1, 2, 3, 4, 5, 6].map( val =>
-        <EntryDay date={currentDate.plus({'days': val})} resource={resourceState.follow('entry-collection')} />
+        <EntryDay
+          date={currentDate.plus({'days': val})}
+          resource={resourceState.follow('entry-collection')}
+          personResource={props.resource}
+        />
       )}
     </div>
   </>;

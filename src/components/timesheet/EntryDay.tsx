@@ -4,18 +4,24 @@ import { Resource } from 'ketting';
 import { DateTime } from 'luxon';
 import { useCollection, useResource } from 'react-ketting';
 
-import { Entry } from '@badgateway/tt-types';
+import { Entry, EntryNew, Person } from '@badgateway/tt-types';
 
 import { ProjectSelect } from '../project/ProjectSelect';
 
 type DayProps = {
   resource: Resource;
+  personResource: Resource<Person>;
   date: DateTime;
 }
 
 export function EntryDay(props: DayProps) {
 
-  const { items, loading, error } = useCollection<Entry>(props.resource);
+  const { items, loading, error } = useCollection<Entry>(
+    props.resource,
+    {
+      refreshOnStale: true,
+    }
+  );
   const [open, setOpen] = useState(false);
 
   if (loading) {
@@ -51,6 +57,11 @@ export function EntryDay(props: DayProps) {
           </thead>
           <tbody>
             {items.map( item => <EntryDayItem resource={item} />)}
+            <EntryDayItemNew
+              parentResource={props.resource}
+              date={props.date}
+              personResource={props.personResource}
+            />
           </tbody>
         </table>
       </div>
@@ -140,6 +151,100 @@ function EntryDayItem(props: EntryDayItemProps) {
         onChange={ev => setDescription(ev.target.value)}
       />
     </td>
+  </tr>;
+
+}
+
+type EntryDayItemNewProps = {
+  parentResource: Resource;
+  personResource: Resource<Person>;
+  date: DateTime;
+}
+
+function EntryDayItemNew(props: EntryDayItemNewProps) {
+
+  const [data, setData] = useState<EntryNew>({
+    minutes: 60,
+    description: '',
+    date: props.date.toISODate(),
+    billable: false,
+  });
+
+  const [projectHref, setProjectHref] = useState<string>();
+
+  const setDescription = (description: string) => {
+
+    setData({
+      ...data,
+      description
+    });
+
+  };
+  const setMinutes = (minutes: number) => {
+
+    setData({
+      ...data,
+      minutes
+    });
+
+  };
+  const setProject = (projectHref: string) => {
+
+    setProjectHref(projectHref);
+
+  };
+
+  const submit = async() => {
+    await props.parentResource.post({
+      data: {
+        ...data,
+        _links: {
+          project: { href: projectHref }
+        }
+      }
+    });
+    setData({
+      minutes: 60,
+      description: '',
+      date: props.date.toISODate(),
+      billable: false,
+    });
+    setProjectHref(undefined);
+
+  };
+
+  return <tr>
+    <td>
+      <ProjectSelect
+        value={projectHref}
+        onChange={projectHref => setProject(projectHref)}
+        className="form-control"
+        showSelectProject
+      />
+    </td>
+    <td>
+      <input
+        type="number"
+        value={(data.minutes / 60).toFixed(2)}
+        className="form-control"
+        min="0.25"
+        max="24"
+        step="0.25"
+        placeholder="1"
+        required
+        onChange={ev => setMinutes(Math.round(ev.target.valueAsNumber * 60))}
+      />
+    </td>
+    <td>
+      <input
+        type="text"
+        value={data.description}
+        className="form-control"
+        required
+        onChange={ev => setDescription(ev.target.value)}
+      />
+    </td>
+    <td><button type="button" className="btn btn-primary" onClick={() => submit()}>Submit</button></td>
   </tr>;
 
 }

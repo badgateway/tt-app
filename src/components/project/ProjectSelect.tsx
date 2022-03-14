@@ -11,12 +11,13 @@ type Props = {
   defaultValue?: string;
   value?: string;
   onChange?: (projectHref: string) => void;
+  showSelectProject?: boolean;
 }
 
 export function ProjectSelect(props: Props) {
 
   const { loading, items } = useCollection('/project');
-  const { onChange, ...passThrough } = props;
+  const { onChange, showSelectProject, ...passThrough } = props;
 
   if (loading) {
     return <select {...passThrough}></select>;
@@ -31,6 +32,7 @@ export function ProjectSelect(props: Props) {
   };
 
   return <select {...passThrough} onChange={changeHandler}>
+    { showSelectProject ? <option key="empty" selected disabled>Select Project</option> : null }
     { items.map( item => <ProjectOption resource={item} key={item.uri} />) }
   </select>;
 }
