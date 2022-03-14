@@ -1,6 +1,6 @@
 {
   "name": "@badgateway/tt-app",
-  "version": "0.9.0",
+  "version": "0.14.0",
   "description": "Frontend for the time-tracking app",
   "main": "dist/index.js",
   "scripts": {
