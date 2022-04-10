@@ -20,6 +20,7 @@ export function EntryDay(props: DayProps) {
     props.resource,
     {
       refreshOnStale: true,
+      rel: 'entry',
     }
   );
   const [open, setOpen] = useState(false);
@@ -56,7 +57,11 @@ export function EntryDay(props: DayProps) {
             </tr>
           </thead>
           <tbody>
-            {items.map( item => <EntryDayItem resource={item} key={item.uri} />)}
+            {items.map( item => <EntryDayItem
+              resource={item}
+              key={item.uri}
+              date={props.date}
+            />)}
             <EntryDayItemNew
               parentResource={props.resource}
               date={props.date}
@@ -73,6 +78,7 @@ export function EntryDay(props: DayProps) {
 
 type EntryDayItemProps = {
   resource: Resource<Entry>;
+  date: DateTime;
 }
 
 function EntryDayItem(props: EntryDayItemProps) {
@@ -81,12 +87,14 @@ function EntryDayItem(props: EntryDayItemProps) {
 
   const delayedSubmitTimeout = useRef<null | ReturnType<typeof setTimeout>>(null);
 
-  if (loading) {
-    return <tr><td colSpan={3}>Loading...</td></tr>;
-  }
+  if (loading) return null;
 
   if (error) {
     return <tr><td colSpan={3}>Error: {error.message}</td></tr>;
+  }
+
+  if (props.date.toISODate() !== resourceState.data.date) {
+    return null;
   }
 
   const delayedSubmit = () => {
