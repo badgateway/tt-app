@@ -1,4 +1,4 @@
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import * as React from 'react';
 import { Client } from 'ketting';
 import { KettingProvider } from 'react-ketting';
@@ -12,6 +12,7 @@ import { ClientNewPage } from './components/client/ClientNewPage';
 import { ClientPage } from './components/client/ClientPage';
 
 import { PersonPage } from './components/person/PersonPage';
+import { PersonNewPage } from './components/person/PersonNewPage';
 import { PeoplePage } from './components/person/PeoplePage';
 
 import { ProjectsPage } from './components/project/ProjectsPage';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/client/:id" element={<ClientPage />}/>
 
           <Route path="/person" element={<PeoplePage />}/>
+          <Route path="/person/new" element={<PersonNewPage />}/>
           <Route path="/person/:id" element={<PersonPage />}/>
 
           <Route path="/project" element={<ProjectsPage />}/>
@@ -49,10 +51,11 @@ function App() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <App />,
-    document.getElementById('app-root'),
-  );
+
+  const container = document.getElementById('app-root');
+  const root = createRoot(container!);
+  root.render(<App />);
+
 });
 
 

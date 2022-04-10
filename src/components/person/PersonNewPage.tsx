@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { useResource } from 'react-ketting';
+import { useNewResource } from 'react-ketting';
 import { useNavigate } from 'react-router-dom';
 import { PersonNew } from '@badgateway/tt-types';
 
 export function PersonNewPage() {
 
-  const { submit, resourceState, setResourceState } = useResource<PersonNew>('/person', {
-    mode: 'POST',
-    initialState: {
+  const { submit, resourceState, setResourceState } = useNewResource<PersonNew>('/person', {
+    initialData: {
       name: '',
     },
   });
@@ -29,12 +28,11 @@ export function PersonNewPage() {
     <div className="page-header"><h1>New User</h1></div>
     <form onSubmit={createPerson}>
       <div className="mb-3">
-        <label htmlFor="formPerson" className="form-label">Person name</label>
+        <label htmlFor="formPerson" className="form-label">Display name</label>
         <input
           type="text"
           className="form-control"
           id="formPersonName"
-          placeholder="My App"
           defaultValue={resourceState.data.name}
           onChange={ev => setName(ev.target.value)}
           minLength={2}
