@@ -12,7 +12,10 @@ export function ProjectsPage() {
 
   const location = useLocation();
 
-  const { loading, error, resourceState, resource } = useResource<Project>(location.pathname);
+  const { loading, error, resourceState, resource } = useResource<Project>(
+    location.pathname,
+    { refreshOnStale: true }
+  );
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="error">{error.message}</div>;

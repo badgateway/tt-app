@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { useResource } from 'react-ketting';
+import { useNewResource } from 'react-ketting';
 import { useNavigate } from 'react-router-dom';
 import { ClientSelect } from '../client/ClientSelect';
 
 export function ProjectNewPage() {
 
-  const { submit, resourceState, setResourceState } = useResource('/project', {
-    mode: 'POST',
-    initialState: {
+  const { submit, resourceState, setResourceState } = useNewResource('/project', {
+    initialData: {
       name: '',
     },
   });
@@ -23,6 +22,7 @@ export function ProjectNewPage() {
   const setName = (name:string) => {
     resourceState.data.name = name;
     setResourceState(resourceState);
+
   };
   const setClient = (clientHref: string) => {
     resourceState.links.set('client', clientHref);
