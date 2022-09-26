@@ -12,3 +12,7 @@
 
 # esbuild output
 /public/script.js
+
+.DS_Store
+
+.env
