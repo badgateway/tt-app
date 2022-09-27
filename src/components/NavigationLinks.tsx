@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'ketting';
 import { useResource } from 'react-ketting';
-import { Link as RouterLink } from 'react-router-dom';
+import { NavLink as RouterLink } from 'react-router-dom';
 
 export function NavigationLinks(props: { open: boolean }) {
 
