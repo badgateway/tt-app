@@ -18,12 +18,12 @@ export function ClientsPage() {
   if (error) return <div className="error">{error.message}</div>;
 
   return <>
-    <div className="page-header"><h1>{getTitle(resourceState)}</h1></div>
-    <div>
-      <CollectionLinks resource={resource} />
+    <div className="page-header">
+      <h1>{getTitle(resourceState)}</h1>
+      <Link className="btn btn-primary" to='/client/new'>Create new client</Link>
     </div>
     <div>
-      <Link className="btn btn-primary" to='/client/new'>Create new client</Link>
+      <CollectionLinks resource={resource} />
     </div>
   </>;
 
