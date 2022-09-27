@@ -42,8 +42,10 @@ ul.collection {
 }
 
 ul.collection li {
-  line-height: 3;
+  background-color: #f6f6f6;
   display: flex;
+  line-height: 3;
+  padding: 0 1rem;
   transition: all .2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -52,10 +54,14 @@ ul.collection:hover li:not(:hover) {
 }
 
 ul.collection li:nth-child(2n) {
-  background-color: #f2f2f2;
+  background-color: #e9e9e9;
 }
 
 ul.collection li > * {
   flex: 1;
   padding: 1ex;
+}
+
+ul.collection li > *:last-child {
+  text-align: end;
 }
