@@ -5,6 +5,8 @@ import { Project } from '@badgateway/tt-types';
 
 import { CollectionLinks } from '../CollectionLinks';
 import { getTitle } from '../../resource-util';
+import { ProjectNewPage } from './ProjectNewPage';
+import ErrorBoundary  from '../ErrorBoundary';
 
 import { Link } from 'react-router-dom';
 
@@ -21,12 +23,24 @@ export function ProjectsPage() {
   if (error) return <div className="error">{error.message}</div>;
 
   return <>
-    <div className="page-header"><h1>{getTitle(resourceState)}</h1></div>
-    <div>
-      <CollectionLinks resource={resource} />
+    <div className="page-header">
+      <h1>
+        {getTitle(resourceState)}
+      </h1>
+      <Link className="btn btn-primary" to='/project/new'>Create new project</Link>
+    </div>
+    <div className="work-zone">
+      <details>
+        <summary>Add project</summary>
+        <div>
+          <ErrorBoundary>
+            <ProjectNewPage halt={true}/>
+          </ErrorBoundary>
+        </div>
+      </details>
     </div>
     <div>
-      <Link className="btn btn-primary" to='/project/new'>Create new project</Link>
+      <CollectionLinks resource={resource} sort="DESC"/>
     </div>
   </>;
 
