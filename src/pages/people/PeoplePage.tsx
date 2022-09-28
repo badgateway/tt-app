@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useResource } from 'react-ketting';
 
-import { CollectionLinks } from '../CollectionLinks';
+import { CollectionLinks } from '../../components/CollectionLinks';
 import { getTitle } from '../../resource-util';
 
 import { Link } from 'react-router-dom';

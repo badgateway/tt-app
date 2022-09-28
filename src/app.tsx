@@ -11,9 +11,9 @@ import { ClientsPage } from './pages/clients/ClientsPage';
 import { ClientNewPage } from './pages/clients/new/ClientNewPage';
 import { ClientPage } from './pages/clients/client/ClientPage';
 
-import { PersonPage } from './components/person/PersonPage';
-import { PersonNewPage } from './components/person/PersonNewPage';
-import { PeoplePage } from './components/person/PeoplePage';
+import { PersonPage } from './pages/people/person/PersonPage';
+import { PersonNewPage } from './pages/people/new/PersonNewPage';
+import { PeoplePage } from './pages/people/PeoplePage';
 
 import { ProjectsPage } from './components/project/ProjectsPage';
 import { ProjectNewPage } from './components/project/ProjectNewPage';
