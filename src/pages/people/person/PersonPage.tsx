@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { useResource } from 'react-ketting';
 import { useLocation } from 'react-router-dom';
 import { Person } from '@badgateway/tt-types';
-import { PersonEditForm } from './PersonEditForm';
-import { PersonWeeklyEntries } from '../timesheet/PersonWeeklyEntries';
+import { PersonEditForm } from '../PersonEditForm';
+import { PersonWeeklyEntries } from '../../../components/timesheet/PersonWeeklyEntries';
 
 type Tab = 'weekly-entries' | 'edit';
 
