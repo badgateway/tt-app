@@ -4,7 +4,7 @@ import { resolve } from 'ketting';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Project } from '@badgateway/tt-types';
 
-import { ClientSelect } from '../ClientSelect';
+import { ClientSelect } from '../../../components/ClientSelect';
 
 export function ProjectPage() {
 

@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useResource } from 'react-ketting';
 import { Project } from '@badgateway/tt-types';
 
-import { CollectionLinks } from '../CollectionLinks';
+import { CollectionLinks } from '../../components/CollectionLinks';
 import { getTitle } from '../../resource-util';
 
 import { Link } from 'react-router-dom';

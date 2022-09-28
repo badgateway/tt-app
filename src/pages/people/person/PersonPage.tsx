@@ -4,7 +4,7 @@ import { useResource } from 'react-ketting';
 import { useLocation } from 'react-router-dom';
 import { Person } from '@badgateway/tt-types';
 import { PersonEditForm } from '../PersonEditForm';
-import { PersonWeeklyEntries } from '../../../components/timesheet/PersonWeeklyEntries';
+import { PersonWeeklyEntries } from './Timesheet';
 
 type Tab = 'weekly-entries' | 'edit';
 
