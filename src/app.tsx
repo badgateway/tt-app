@@ -15,9 +15,9 @@ import { PersonPage } from './pages/people/person/PersonPage';
 import { PersonNewPage } from './pages/people/new/PersonNewPage';
 import { PeoplePage } from './pages/people/PeoplePage';
 
-import { ProjectsPage } from './components/project/ProjectsPage';
-import { ProjectNewPage } from './components/project/ProjectNewPage';
-import { ProjectPage } from './components/project/ProjectPage';
+import { ProjectsPage } from './pages/projects/ProjectsPage';
+import { ProjectNewPage } from './pages/projects/new/ProjectNewPage';
+import { ProjectPage } from './pages/projects/project/ProjectPage';
 
 function App() {
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useNewResource } from 'react-ketting';
 import { useNavigate } from 'react-router-dom';
-import { ClientSelect } from '../ClientSelect';
+import { ClientSelect } from '../../../components/ClientSelect';
 
 type pageProps = {
   halt?: boolean;

@@ -6,7 +6,7 @@ import { DateTime } from 'luxon';
 
 import { Person } from '@badgateway/tt-types';
 
-import { EntryDay } from './EntryDay';
+import { EntryDay } from './TimesheetEntry';
 
 type Props = {
   resource: Resource<Person>;
