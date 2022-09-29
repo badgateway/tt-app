@@ -1,6 +1,18 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-console */
+
 const esbuild = require('esbuild');
+const esbuildSass = require('esbuild-sass-plugin');
 const http = require('http');
+
+// build & compile scss → css
+esbuild.build({
+  entryPoints: ['./src/styles/main.scss'],
+  outfile: './public/css/custom.css',
+  watch: true,
+  plugins: [esbuildSass.sassPlugin()]
+}).catch(() => process.exit(1));
 
 // Start esbuild's server on a random local port
 esbuild.serve({
@@ -8,10 +20,10 @@ esbuild.serve({
 }, {
   bundle: true,
   outfile: 'public/script.js',
-  entryPoints: ['src/app.tsx'],
+  entryPoints: ['src/App.tsx'],
 }).then(result => {
   // The result tells us where esbuild's local server is
-  const {host, port} = result
+  const {host, port} = result;
 
   // Then start a proxy server on port 3000
   http.createServer((req, res) => {
@@ -21,7 +33,7 @@ esbuild.serve({
       path: req.url,
       method: req.method,
       headers: req.headers,
-    }
+    };
 
     console.log(req.url);
 
@@ -53,7 +65,7 @@ esbuild.serve({
     req.pipe(proxyReq, { end: true });
   }).listen(8902);
   console.log(
-`Starting dev server
+    `Starting dev server
 
 Listening on http://127.0.0.1:%i`
     , 8902);
