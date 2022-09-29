@@ -21,7 +21,7 @@ import { ProjectPage } from './pages/projects/project/ProjectPage';
 
 function App() {
 
-  const client = new Client('http://localhost:8902/');
+  const client = new Client('http://localhost:8901/');
 
   return <KettingProvider client={client}>
     <BrowserRouter>

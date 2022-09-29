@@ -63,12 +63,12 @@ esbuild.serve({
 
     // Forward the body of the request to esbuild
     req.pipe(proxyReq, { end: true });
-  }).listen(8901);
+  }).listen(8902);
   console.log(
     `Starting dev server
 
 Listening on http://127.0.0.1:%i`
-    , 8901);
+    , 8902);
 });
 
 
