@@ -6,7 +6,7 @@
   "scripts": {
     "prepublishOnly": "tsc",
     "build": "tsc",
-    "start": "./serve.js",
+    "start": "./serve.js --watch",
     "start:watch": "./serve.js",
     "watch": "tsc --watch",
     "lint": "eslint --quiet 'src/**/*.ts?'",
@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "@types/node": "^18.7.23",
+    "esbuild-sass-plugin": "^2.3.3",
     "ketting": "^7.3.0",
     "luxon": "^3.0.4"
   }
