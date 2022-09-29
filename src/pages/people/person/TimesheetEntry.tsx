@@ -6,7 +6,7 @@ import { useCollection, useResource } from 'react-ketting';
 
 import { Entry, EntryNew, Person } from '@badgateway/tt-types';
 
-import { ProjectSelect } from '../project/ProjectSelect';
+import { ProjectSelect } from '../../../components/ProjectSelect';
 
 type DayProps = {
   resource: Resource;

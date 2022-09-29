@@ -7,17 +7,17 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ResourcePage } from './components/ResourcePage';
 import { NavBar } from './components/NavBar';
 
-import { ClientsPage } from './components/client/ClientsPage';
-import { ClientNewPage } from './components/client/ClientNewPage';
-import { ClientPage } from './components/client/ClientPage';
+import { ClientsPage } from './pages/clients/ClientsPage';
+import { ClientNewPage } from './pages/clients/new/ClientNewPage';
+import { ClientPage } from './pages/clients/client/ClientPage';
 
-import { PersonPage } from './components/person/PersonPage';
-import { PersonNewPage } from './components/person/PersonNewPage';
-import { PeoplePage } from './components/person/PeoplePage';
+import { PersonPage } from './pages/people/person/PersonPage';
+import { PersonNewPage } from './pages/people/new/PersonNewPage';
+import { PeoplePage } from './pages/people/PeoplePage';
 
-import { ProjectsPage } from './components/project/ProjectsPage';
-import { ProjectNewPage } from './components/project/ProjectNewPage';
-import { ProjectPage } from './components/project/ProjectPage';
+import { ProjectsPage } from './pages/projects/ProjectsPage';
+import { ProjectNewPage } from './pages/projects/new/ProjectNewPage';
+import { ProjectPage } from './pages/projects/project/ProjectPage';
 
 function App() {
 

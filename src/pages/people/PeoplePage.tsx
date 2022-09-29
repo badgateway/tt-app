@@ -1,21 +1,17 @@
 import * as React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useResource } from 'react-ketting';
-import { Project } from '@badgateway/tt-types';
 
-import { CollectionLinks } from '../CollectionLinks';
+import { CollectionLinks } from '../../components/CollectionLinks';
 import { getTitle } from '../../resource-util';
 
 import { Link } from 'react-router-dom';
 
-export function ProjectsPage() {
+export function PeoplePage() {
 
   const location = useLocation();
 
-  const { loading, error, resourceState, resource } = useResource<Project>(
-    location.pathname,
-    { refreshOnStale: true }
-  );
+  const { loading, error, resourceState, resource } = useResource(location.pathname);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="error">{error.message}</div>;
@@ -26,7 +22,7 @@ export function ProjectsPage() {
       <CollectionLinks resource={resource} />
     </div>
     <div>
-      <Link className="btn btn-primary" to='/project/new'>Create new project</Link>
+      <Link className="btn btn-primary" to='/person/new'>Add new user</Link>
     </div>
   </>;
 
