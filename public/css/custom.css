@@ -1,3 +1,4 @@
+/* TODO: move to main.scss */
 body {
   padding-top: 120px;
 }
@@ -9,7 +10,7 @@ body {
 table tr td:nth-child(2) { width: 9em;}
 table tr td:nth-child(3) { width: 60%;}
 table tr td:nth-child(4) { text-align: right; }
-}
+
 
 /*
 Last div in a form contains the [submit] button. Aligning the div to have the submit/confirm button to be at the far end.

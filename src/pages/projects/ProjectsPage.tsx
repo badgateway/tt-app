@@ -5,8 +5,8 @@ import { Project } from '@badgateway/tt-types';
 
 import { CollectionLinks } from '../../components/CollectionLinks';
 import { getTitle } from '../../resource-util';
-import { ProjectNewPage } from './ProjectNewPage';
-import ErrorBoundary  from '../ErrorBoundary';
+import { ProjectNewPage } from './new/ProjectNewPage';
+import ErrorBoundary  from '../../components/ErrorBoundary';
 
 import { Link } from 'react-router-dom';
 
