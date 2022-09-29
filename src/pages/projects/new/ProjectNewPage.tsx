@@ -3,7 +3,11 @@ import { useNewResource } from 'react-ketting';
 import { useNavigate } from 'react-router-dom';
 import { ClientSelect } from '../../../components/ClientSelect';
 
-export function ProjectNewPage() {
+type pageProps = {
+  halt?: boolean;
+}
+
+export function ProjectNewPage(props: pageProps) {
 
   const { submit, resourceState, setResourceState } = useNewResource('/project', {
     initialData: {
@@ -16,7 +20,9 @@ export function ProjectNewPage() {
   const createProject = async (ev: any) => {
     ev.preventDefault();
     submit();
-    navigation('/project');
+    if(!props.halt) {
+      navigation('/project');
+    }
   };
 
   const setName = (name:string) => {

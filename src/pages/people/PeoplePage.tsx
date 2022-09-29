@@ -17,12 +17,12 @@ export function PeoplePage() {
   if (error) return <div className="error">{error.message}</div>;
 
   return <>
-    <div className="page-header"><h1>{getTitle(resourceState)}</h1></div>
-    <div>
-      <CollectionLinks resource={resource} />
+    <div className="page-header">
+      <h1>{getTitle(resourceState)}</h1>
+      <Link className="btn btn-primary" to='/person/new'>Add new person</Link>
     </div>
     <div>
-      <Link className="btn btn-primary" to='/person/new'>Add new user</Link>
+      <CollectionLinks resource={resource} />
     </div>
   </>;
 

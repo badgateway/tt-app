@@ -53,7 +53,7 @@ export function EntryDay(props: DayProps) {
             <tr>
               <th scope="col">Project</th>
               <th scope="col">Hours</th>
-              <th scope="col">Description</th>
+              <th scope="col" colSpan={2}>Description</th>
             </tr>
           </thead>
           <tbody>
@@ -227,7 +227,7 @@ function EntryDayItemNew(props: EntryDayItemNewProps) {
       <ProjectSelect
         value={projectHref}
         onChange={projectHref => setProject(projectHref)}
-        className="form-control"
+        className="form-select"
         showSelectProject
       />
     </td>

@@ -2,10 +2,11 @@ import * as React from 'react';
 import { useCollection, useResource } from 'react-ketting';
 import { Resource } from 'ketting';
 import { Link } from 'react-router-dom';
-import { getTitle } from '../resource-util';
+import { getTitle, getModifiedAtFormatted } from '../resource-util';
 
 type Props = {
   resource: Resource;
+  sort?: 'ASC' | 'DESC';
 }
 
 export function CollectionLinks(props: Props) {
@@ -14,7 +15,12 @@ export function CollectionLinks(props: Props) {
 
   if (!items) return null;
 
-  return <ul>{items.map( item => <CollectionItem resource={item} key={item.uri} />)}</ul>;
+  if(props.sort && props.sort === 'DESC') {
+    // adding the latest to the top
+    items.reverse();
+  }
+
+  return <ul className="collection">{items.map( item => <CollectionItem resource={item} key={item.uri} />)}</ul>;
 
 }
 
@@ -31,6 +37,8 @@ export function CollectionItem(props: Props) {
     <Link to={target}>
       {getTitle(resourceState)}
     </Link>
+    <span>{ resourceState.links.get('client')?.title }</span>
+    <span title={resourceState.data.modifiedAt}>{ getModifiedAtFormatted(resourceState) }</span>
   </li>;
 
 }

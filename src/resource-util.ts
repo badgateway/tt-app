@@ -11,3 +11,13 @@ export function getTitle(resourceState: State): string {
   return title;
 
 }
+
+export function getModifiedAtFormatted(resourceState: State): string {
+
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const date = new Date(resourceState.data.modifiedAt);
+  const dateString = `${months[date.getMonth()]} ${date.getDate()}, ${date.getUTCFullYear()}`;
+
+  return dateString;
+
+}
