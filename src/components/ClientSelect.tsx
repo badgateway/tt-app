@@ -5,14 +5,14 @@ import {Client} from '@badgateway/tt-types';
 
 type ClientSelectProps = {
   className?: string;
-  defaultValue?: string;
+  client?: string;
   id?: string;
   onChange?: (clientHref: string) => void;
   required?: boolean;
 };
 export function ClientSelect(props: ClientSelectProps) {
   const {onChange, ...passThrough} = props;
-  const [selectValue, setSelectValue] = React.useState(props.defaultValue);
+  const [selectValue, setSelectValue] = React.useState(props.client);
   const {loading, items} = useCollection('/client');
 
   const changeHandler = (ev: React.ChangeEvent<HTMLSelectElement>) => {
@@ -33,7 +33,6 @@ export function ClientSelect(props: ClientSelectProps) {
       className={props.className}
       id={props.id}
       value={selectValue}
-      defaultValue={selectValue}
       required={props.required}
     >
       <option value='' style={{display: 'none'}}>

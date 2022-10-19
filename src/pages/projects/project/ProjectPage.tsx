@@ -13,7 +13,7 @@ export function ProjectPage() {
   const navigation = useNavigate();
   const updateProject = async (ev: any) => {
     ev.preventDefault();
-    submit();
+    await submit();
     navigation('/project');
   };
   const setName = (name: string) => {
@@ -44,7 +44,7 @@ export function ProjectPage() {
             type='text'
             className='form-control'
             id='formProjectName'
-            defaultValue={resourceState.data.name}
+            value={resourceState.data.name}
             onChange={(ev) => setName(ev.target.value)}
             minLength={2}
           />
@@ -55,9 +55,9 @@ export function ProjectPage() {
           </label>
           <ClientSelect
             className='form-select'
+            client={clientUrl}
             id='formProjectClient'
             onChange={(clientHref) => setClient(clientHref)}
-            defaultValue={clientUrl}
           />
         </div>
         <div>
