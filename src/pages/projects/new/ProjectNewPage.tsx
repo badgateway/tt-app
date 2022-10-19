@@ -3,13 +3,11 @@ import { useNewResource } from 'react-ketting';
 import { useNavigate } from 'react-router-dom';
 import { ClientSelect } from '../../../components/ClientSelect';
 
-type pageProps = {
+type ProjectNewProps = {
   halt?: boolean;
-}
-
-export function ProjectNewPage(props: pageProps) {
-
-  const { submit, resourceState, setResourceState } = useNewResource('/project', {
+};
+export function ProjectNewPage(props: ProjectNewProps) {
+  const {submit, resourceState, setResourceState} = useNewResource('/project', {
     initialData: {
       name: '',
     },
@@ -20,49 +18,59 @@ export function ProjectNewPage(props: pageProps) {
   const createProject = async (ev: any) => {
     ev.preventDefault();
     submit();
-    if(!props.halt) {
+    if (!props.halt) {
       navigation('/project');
     }
   };
 
-  const setName = (name:string) => {
+  const setName = (name: string) => {
     resourceState.data.name = name;
     setResourceState(resourceState);
-
   };
+
   const setClient = (clientHref: string) => {
     resourceState.links.set('client', clientHref);
   };
 
-  return <>
-    <div className="page-header"><h1>New Project</h1></div>
-    <form onSubmit={createProject}>
-      <div className="mb-3">
-        <label htmlFor="formProjectName" className="form-label">Project name</label>
-        <input
-          type="text"
-          className="form-control"
-          id="formProjectName"
-          placeholder="My App"
-          defaultValue={resourceState.data.name}
-          onChange={ev => setName(ev.target.value)}
-          minLength={2}
-          required
-        />
+  return (
+    <>
+      <div className='page-header'>
+        <h1>New Project</h1>
       </div>
-      <div className="mb-3">
-        <label htmlFor="formProjectClient" className="form-label">Client</label>
-        <ClientSelect
-          className="form-select"
-          id="formProjectClient"
-          onChange={clientHref => setClient(clientHref)}
-        />
-      </div>
-      <div>
-        <button type="submit" className="btn btn-primary">Create</button>
-      </div>
-    </form>
-  </>;
-
+      <form onSubmit={createProject}>
+        <div className='mb-3'>
+          <label htmlFor='formProjectName' className='form-label'>
+            Project name
+          </label>
+          <input
+            type='text'
+            className='form-control'
+            id='formProjectName'
+            placeholder='Enter project name'
+            defaultValue={resourceState.data.name}
+            onChange={(ev) => setName(ev.target.value)}
+            minLength={2}
+            required
+          />
+        </div>
+        <div className='mb-3'>
+          <label htmlFor='formProjectClient' className='form-label'>
+            Client
+          </label>
+          <ClientSelect
+            className='form-select'
+            id='formProjectClient'
+            onChange={(clientHref) => setClient(clientHref)}
+            required
+          />
+        </div>
+        <div>
+          <button type='submit' className='btn btn-primary'>
+            Create
+          </button>
+        </div>
+      </form>
+    </>
+  );
 }
 
