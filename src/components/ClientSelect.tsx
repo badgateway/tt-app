@@ -11,11 +11,13 @@ type ClientSelectProps = {
   required?: boolean;
 };
 export function ClientSelect(props: ClientSelectProps) {
-  const {loading, items} = useCollection('/client');
   const {onChange, ...passThrough} = props;
+  const [selectValue, setSelectValue] = React.useState(props.defaultValue);
+  const {loading, items} = useCollection('/client');
 
   const changeHandler = (ev: React.ChangeEvent<HTMLSelectElement>) => {
     if (onChange) {
+      setSelectValue(ev.target.value);
       onChange(ev.target.value);
     }
   };
@@ -30,7 +32,8 @@ export function ClientSelect(props: ClientSelectProps) {
       onChange={changeHandler}
       className={props.className}
       id={props.id}
-      defaultValue={props.defaultValue}
+      value={selectValue}
+      defaultValue={selectValue}
       required={props.required}
     >
       <option value='' style={{display: 'none'}}>
