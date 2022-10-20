@@ -253,7 +253,7 @@ function EntryDayItemNew(props: EntryDayItemNewProps) {
         onChange={ev => setDescription(ev.target.value)}
       />
     </td>
-    <td><button type="button" className="btn btn-primary" disabled={!projectHref} onClick={() => submit()}>Submit</button></td>
+    <td><button type="button" className="btn btn-primary" onClick={() => submit()}>Submit</button></td>
   </tr>;
 
 }
