@@ -1,3 +1,7 @@
+@import './core/typography.scss';
+
+// clean/sort all this up when we impliment a design
+
 body {
   padding-top: 120px;
 }
@@ -64,4 +68,8 @@ ul.collection li > * {
 
 ul.collection li > *:last-child {
   text-align: end;
+}
+
+tbody button {
+  width: 100%;
 }

@@ -1,3 +1,10 @@
+.material-icons,
+.material-icons-outlined {
+  vertical-align: middle;
+  user-select: none;
+  -moz-user-select: none;
+  cursor: inherit;
+}
 body {
   padding-top: 120px;
 }
@@ -51,4 +58,7 @@ ul.collection li > * {
 }
 ul.collection li > *:last-child {
   text-align: end;
+}
+tbody button {
+  width: 100%;
 }
