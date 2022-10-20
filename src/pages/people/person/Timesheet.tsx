@@ -48,7 +48,7 @@ export function PersonWeeklyEntries(props: Props) {
       {[0, 1, 2, 3, 4, 5, 6].map( val =>
         <EntryDay
           date={currentDate.plus({'days': val})}
-          resource={resourceState.follow('search-sheet', { year: currentDate.year, weekNum: currentDate.weekNumber })}
+          resource={resourceState.follow('entry-collection')}
           personResource={props.resource}
           key={'day-' + val}
         />

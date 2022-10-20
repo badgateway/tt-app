@@ -204,7 +204,7 @@ function EntryDayItemNew(props: EntryDayItemNewProps) {
   };
 
   const submit = async() => {
-    await props.parentResource.post({
+    await props.parentResource.postFollow({
       data: {
         ...data,
         _links: {
