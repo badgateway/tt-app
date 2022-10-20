@@ -16,11 +16,12 @@ type DayProps = {
 
 export function EntryDay(props: DayProps) {
 
+
   const { items, loading, error } = useCollection<Entry>(
     props.resource,
     {
       refreshOnStale: true,
-      rel: 'entry',
+      rel: 'item',
     }
   );
   const [open, setOpen] = useState(false);
