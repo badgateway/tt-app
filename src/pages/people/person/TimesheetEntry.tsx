@@ -3,16 +3,17 @@ import { useState, useRef } from 'react';
 import { Resource } from 'ketting';
 import { DateTime } from 'luxon';
 import { useCollection, useResource } from 'react-ketting';
+import {confirmAlert} from 'react-confirm-alert';
 
-import { Entry, EntryNew, Person } from '@badgateway/tt-types';
+import {Entry, EntryNew, Person} from '@badgateway/tt-types';
 
-import { ProjectSelect } from '../../../components/ProjectSelect';
+import {ProjectSelect} from '../../../components/ProjectSelect';
 
 type DayProps = {
   resource: Resource;
   personResource: Resource<Person>;
   date: DateTime;
-}
+};
 
 export function EntryDay(props: DayProps) {
   const {items, loading, error} = useCollection<Entry>(props.resource, {
@@ -95,6 +96,31 @@ function EntryDayItem(props: EntryDayItemProps) {
     null
   );
 
+  const deleteEntry = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    confirmAlert({
+      message: `Are you sure you want to delete this entry for ${
+        resourceState.links.get('project')?.title
+      }?`,
+      buttons: [
+        {
+          label: 'Yes',
+          className: 'primary',
+          onClick: async () => {
+            await props.resource.delete();
+          },
+        },
+        {
+          label: 'No',
+          className: 'outline',
+          onClick: () => {
+            return;
+          },
+        },
+      ],
+    });
+  };
+
   if (loading) return null;
 
   if (error) {
@@ -165,7 +191,14 @@ function EntryDayItem(props: EntryDayItemProps) {
         />
       </td>
       <td>
-        <button type='button' className='btn btn-primary'>
+        <button
+          aria-label={`Delete the ${
+            resourceState.links.get('project')?.title
+          } entry.`}
+          className='btn btn-primary'
+          onClick={deleteEntry}
+          type='button'
+        >
           <i aria-hidden='true' className='material-icons'>
             delete
           </i>
