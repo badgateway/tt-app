@@ -181,6 +181,14 @@ function EntryDayItemNew(props: EntryDayItemNewProps) {
 
   const [projectHref, setProjectHref] = useState<string>();
 
+  const projectExists = (projectHref: string | undefined) => {
+    if(projectHref){
+      return true;
+    }else{
+      return false;
+    }
+  };
+
   const setDescription = (description: string) => {
 
     setData({
@@ -253,7 +261,7 @@ function EntryDayItemNew(props: EntryDayItemNewProps) {
         onChange={ev => setDescription(ev.target.value)}
       />
     </td>
-    <td><button type="button" className="btn btn-primary" onClick={() => submit()}>Submit</button></td>
+    <td><button type="button" className="btn btn-primary" disabled={!projectExists(projectHref)} onClick={() => submit()}>Submit</button></td>
   </tr>;
 
 }
