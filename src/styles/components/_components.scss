@@ -1,0 +1,22 @@
+.confirm-modal {
+  position: absolute;
+  background: #fff;
+  padding: 2rem;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 20px 75px rgba(0, 0, 0, 0.25);
+  max-width: 360px;
+  text-align: center;
+
+  p {
+    margin-bottom: 2rem;
+  }
+
+  button:not(:last-of-type) {
+    margin-right: 2rem;
+  }
+}

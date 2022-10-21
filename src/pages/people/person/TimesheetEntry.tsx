@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import { Resource } from 'ketting';
 import { DateTime } from 'luxon';
 import { useCollection, useResource } from 'react-ketting';
-import {confirmAlert} from 'react-confirm-alert';
+import Modal from 'react-modal';
 
 import {Entry, EntryNew, Person} from '@badgateway/tt-types';
 
@@ -96,29 +96,15 @@ function EntryDayItem(props: EntryDayItemProps) {
     null
   );
 
-  const deleteEntry = async (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    confirmAlert({
-      message: `Are you sure you want to delete this entry for ${
-        resourceState.links.get('project')?.title
-      }?`,
-      buttons: [
-        {
-          label: 'Yes',
-          className: 'primary',
-          onClick: async () => {
-            await props.resource.delete();
-          },
-        },
-        {
-          label: 'No',
-          className: 'outline',
-          onClick: () => {
-            return;
-          },
-        },
-      ],
-    });
+  const [modalOpen, setModalOpen] = React.useState(false);
+
+  const deleteEntry = async () => {
+    try {
+      await props.resource.delete();
+      setModalOpen(false);
+    } catch (error: any) {
+      setModalOpen(false);
+    }
   };
 
   if (loading) return null;
@@ -160,51 +146,82 @@ function EntryDayItem(props: EntryDayItemProps) {
   };
 
   return (
-    <tr>
-      <td>
-        <ProjectSelect
-          value={resourceState.links.get('project')?.href}
-          onChange={(projectHref) => setProject(projectHref)}
-          className='form-control'
-        />
-      </td>
-      <td>
-        <input
-          type='number'
-          value={(resourceState.data.minutes / 60).toFixed(2)}
-          className='form-control'
-          min='0.25'
-          max='24'
-          step='0.25'
-          placeholder='1'
-          onChange={(ev) =>
-            setMinutes(Math.round(ev.target.valueAsNumber * 60))
-          }
-        />
-      </td>
-      <td>
-        <input
-          type='text'
-          value={resourceState.data.description}
-          className='form-control'
-          onChange={(ev) => setDescription(ev.target.value)}
-        />
-      </td>
-      <td>
+    <>
+      <Modal
+        className='confirm-modal'
+        contentLabel='Example Modal'
+        isOpen={modalOpen}
+        onRequestClose={() => setModalOpen(false)}
+      >
+        <p>
+          Are you sure you want to delete the entry for
+          {' ' + resourceState.links.get('project')?.title}?
+        </p>
         <button
           aria-label={`Delete the ${
             resourceState.links.get('project')?.title
           } entry.`}
           className='btn btn-primary'
-          onClick={deleteEntry}
+          onClick={() => deleteEntry()}
           type='button'
         >
-          <i aria-hidden='true' className='material-icons'>
-            delete
-          </i>
+          Yes
         </button>
-      </td>
-    </tr>
+        <button
+          aria-label={'Decline delete.'}
+          className='btn btn-primary'
+          onClick={() => setModalOpen(false)}
+          type='button'
+        >
+          No
+        </button>
+      </Modal>
+      <tr>
+        <td>
+          <ProjectSelect
+            value={resourceState.links.get('project')?.href}
+            onChange={(projectHref) => setProject(projectHref)}
+            className='form-control'
+          />
+        </td>
+        <td>
+          <input
+            type='number'
+            value={(resourceState.data.minutes / 60).toFixed(2)}
+            className='form-control'
+            min='0.25'
+            max='24'
+            step='0.25'
+            placeholder='1'
+            onChange={(ev) =>
+              setMinutes(Math.round(ev.target.valueAsNumber * 60))
+            }
+          />
+        </td>
+        <td>
+          <input
+            type='text'
+            value={resourceState.data.description}
+            className='form-control'
+            onChange={(ev) => setDescription(ev.target.value)}
+          />
+        </td>
+        <td>
+          <button
+            aria-label={`Delete the ${
+              resourceState.links.get('project')?.title
+            } entry.`}
+            className='btn btn-primary'
+            onClick={() => setModalOpen(true)}
+            type='button'
+          >
+            <i aria-hidden='true' className='material-icons'>
+              delete
+            </i>
+          </button>
+        </td>
+      </tr>
+    </>
   );
 }
 
