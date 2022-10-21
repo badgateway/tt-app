@@ -1,4 +1,5 @@
 import * as React from 'react';
+// eslint-disable-next-line
 import ReactModal = require('react-modal');
 
 type ConfirmModalProps = {
