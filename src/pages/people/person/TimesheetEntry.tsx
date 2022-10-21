@@ -1,9 +1,8 @@
-import * as React from 'react';
-import { useState, useRef } from 'react';
-import { Resource } from 'ketting';
-import { DateTime } from 'luxon';
-import { useCollection, useResource } from 'react-ketting';
-import Modal from 'react-modal';
+import React, {useState, useRef} from 'react';
+import {Resource} from 'ketting';
+import {DateTime} from 'luxon';
+import {useCollection, useResource} from 'react-ketting';
+import {ConfirmModal} from '../../../components/ConfirmModal';
 
 import {Entry, EntryNew, Person} from '@badgateway/tt-types';
 
@@ -147,35 +146,6 @@ function EntryDayItem(props: EntryDayItemProps) {
 
   return (
     <>
-      <Modal
-        className='confirm-modal'
-        contentLabel='Example Modal'
-        isOpen={modalOpen}
-        onRequestClose={() => setModalOpen(false)}
-      >
-        <p>
-          Are you sure you want to delete the entry for
-          {' ' + resourceState.links.get('project')?.title}?
-        </p>
-        <button
-          aria-label={`Delete the ${
-            resourceState.links.get('project')?.title
-          } entry.`}
-          className='btn btn-primary'
-          onClick={() => deleteEntry()}
-          type='button'
-        >
-          Yes
-        </button>
-        <button
-          aria-label={'Decline delete.'}
-          className='btn btn-primary'
-          onClick={() => setModalOpen(false)}
-          type='button'
-        >
-          No
-        </button>
-      </Modal>
       <tr>
         <td>
           <ProjectSelect
@@ -221,6 +191,18 @@ function EntryDayItem(props: EntryDayItemProps) {
           </button>
         </td>
       </tr>
+      <ConfirmModal
+        acceptAction={deleteEntry}
+        acceptAria={`Delete the ${
+          resourceState.links.get('project')?.title
+        } entry.`}
+        closeAction={setModalOpen}
+        isOpen={modalOpen}
+        message={`Are you sure you want to delete the entry for ${
+          resourceState.links.get('project')?.title
+        }?`}
+        renderDecline
+      />
     </>
   );
 }
