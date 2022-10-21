@@ -3,7 +3,8 @@ import * as React from 'react';
 import { Client } from 'ketting';
 import { KettingProvider } from 'react-ketting';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Modal from 'react-modal';
+// eslint-disable-next-line
+import ReactModal = require('react-modal');
 
 import {ResourcePage} from './components/ResourcePage';
 import {NavBar} from './components/NavBar';
@@ -51,7 +52,7 @@ function App() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('app-root');
-  Modal.setAppElement(container!);
+  ReactModal.setAppElement(container!);
   const root = createRoot(container!);
   root.render(<App />);
 });
