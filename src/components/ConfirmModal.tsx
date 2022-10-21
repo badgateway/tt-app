@@ -45,7 +45,7 @@ export function ConfirmModal(props: ConfirmModalProps) {
           }
           type='button'
         >
-          {props.declineLabel ? props.declineLabel : 'Yes'}
+          {props.declineLabel ? props.declineLabel : 'No'}
         </button>
       )}
     </Modal>
