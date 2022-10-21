@@ -1,6 +1,6 @@
 import * as React from 'react';
-/* eslint no-console:0 "@typescript-eslint/no-var-requires": 0 */
-import ReactModal = require('react-modal');
+// eslint-disable-next-line
+const ReactModal = require('react-modal'); 
 
 type ConfirmModalProps = {
   acceptAction?: () => Promise<void>;
