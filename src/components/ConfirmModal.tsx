@@ -1,11 +1,11 @@
-import React, {Dispatch, SetStateAction} from 'react';
-import Modal from 'react-modal';
+import * as React from 'react';
+import ReactModal = require('react-modal');
 
 type ConfirmModalProps = {
   acceptAction?: () => Promise<void>;
   acceptAria?: string;
   acceptLabel?: string;
-  closeAction: Dispatch<SetStateAction<boolean>>;
+  closeAction: React.Dispatch<React.SetStateAction<boolean>>;
   declineAction?: () => Promise<void>;
   declineAria?: string;
   declineLabel?: string;
@@ -15,7 +15,7 @@ type ConfirmModalProps = {
 };
 export function ConfirmModal(props: ConfirmModalProps) {
   return (
-    <Modal
+    <ReactModal
       className='confirm-modal'
       contentLabel='Example Modal'
       isOpen={props.isOpen}
@@ -48,6 +48,6 @@ export function ConfirmModal(props: ConfirmModalProps) {
           {props.declineLabel ? props.declineLabel : 'No'}
         </button>
       )}
-    </Modal>
+    </ReactModal>
   );
 }

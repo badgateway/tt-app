@@ -1,4 +1,5 @@
-import React, {useState, useRef} from 'react';
+import * as React from 'react';
+import {useState, useRef} from 'react';
 import {Resource} from 'ketting';
 import {DateTime} from 'luxon';
 import {useCollection, useResource} from 'react-ketting';
