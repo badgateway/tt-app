@@ -9,13 +9,13 @@ import {Entry, EntryNew, Person} from '@badgateway/tt-types';
 
 import {ProjectSelect} from '../../../components/ProjectSelect';
 
-type DayProps = {
+type TimesheetDayProps = {
   resource: Resource;
   personResource: Resource<Person>;
   date: DateTime;
 };
 
-export function EntryDay(props: DayProps) {
+export function TimesheetDay(props: TimesheetDayProps) {
   const {items, loading, error} = useCollection<Entry>(props.resource, {
     refreshOnStale: true,
     rel: 'entry',

@@ -6,7 +6,7 @@ import { DateTime } from 'luxon';
 
 import { Person } from '@badgateway/tt-types';
 
-import { EntryDay } from './TimesheetEntry';
+import { TimesheetDay } from './TimesheetDay';
 
 type Props = {
   resource: Resource<Person>;
@@ -46,7 +46,7 @@ export function PersonWeeklyEntries(props: Props) {
     </ul>
     <div className="accordion">
       {[0, 1, 2, 3, 4, 5, 6].map( val =>
-        <EntryDay
+        <TimesheetDay
           date={currentDate.plus({'days': val})}
           resource={resourceState.follow('search-sheet', { year: currentDate.year, weekNum: currentDate.weekNumber })}
           personResource={props.resource}
