@@ -153,6 +153,7 @@ function EntryItem(props: EntryItemProps) {
             value={resourceState.links.get('project')?.href}
             onChange={(projectHref) => setProject(projectHref)}
             className='form-control'
+            required
           />
         </td>
         <td>
@@ -185,6 +186,7 @@ function EntryItem(props: EntryItemProps) {
             className='btn btn-primary'
             onClick={() => setModalOpen(true)}
             type='button'
+            title='Delete this entry'
           >
             <i aria-hidden='true' className='material-icons'>
               delete
@@ -221,8 +223,10 @@ function EntryItemNew(props: EntryItemNewProps) {
     date: props.date.toISODate(),
     billable: false,
   });
-
+  const [addingNew, setAddingNew] = useState<boolean>(false);
   const [projectHref, setProjectHref] = useState<string>();
+  const [projectError, setProjectError] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const setDescription = (description: string) => {
     setData({
@@ -237,18 +241,29 @@ function EntryItemNew(props: EntryItemNewProps) {
     });
   };
   const setProject = (projectHref: string) => {
+    setProjectError(false);
     setProjectHref(projectHref);
   };
 
   const submit = async () => {
-    await props.parentResource.post({
-      data: {
-        ...data,
-        _links: {
-          project: {href: projectHref},
+    if (!projectHref) {
+      setProjectError(true);
+      setModalOpen(true);
+      return;
+    }
+    try {
+      await props.parentResource.post({
+        data: {
+          ...data,
+          _links: {
+            project: {href: projectHref},
+          },
         },
-      },
-    });
+      });
+    } catch (error: any) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
     setData({
       minutes: 60,
       description: '',
@@ -256,52 +271,86 @@ function EntryItemNew(props: EntryItemNewProps) {
       billable: false,
     });
     setProjectHref(undefined);
+    setAddingNew(false);
   };
 
   return (
-    <tr>
-      <td>
-        <ProjectSelect
-          value={projectHref}
-          onChange={(projectHref) => setProject(projectHref)}
-          className='form-select'
-          showSelectProject
-        />
-      </td>
-      <td>
-        <input
-          type='number'
-          value={(data.minutes / 60).toFixed(2)}
-          className='form-control'
-          min='0.25'
-          max='24'
-          step='0.25'
-          placeholder='1'
-          required
-          onChange={(ev) =>
-            setMinutes(Math.round(ev.target.valueAsNumber * 60))
-          }
-        />
-      </td>
-      <td>
-        <input
-          type='text'
-          value={data.description}
-          className='form-control'
-          required
-          onChange={(ev) => setDescription(ev.target.value)}
-        />
-      </td>
-      <td>
-        <button
-          type='button'
-          className='btn btn-primary'
-          onClick={() => submit()}
-        >
-          Submit
-        </button>
-      </td>
-    </tr>
+    <>
+      {addingNew ? (
+        <>
+          <tr>
+            <td>
+              <ProjectSelect
+                value={projectHref}
+                onChange={(projectHref) => setProject(projectHref)}
+                className={`form-select ${projectError ? 'validationError' : ''}`}
+                showSelectProject
+              />
+            </td>
+            <td>
+              <input
+                type='number'
+                value={(data.minutes / 60).toFixed(2)}
+                className='form-control'
+                min='0.25'
+                max='24'
+                step='0.25'
+                placeholder='1'
+                required
+                onChange={(ev) =>
+                  setMinutes(Math.round(ev.target.valueAsNumber * 60))
+                }
+              />
+            </td>
+            <td>
+              <input
+                type='text'
+                value={data.description}
+                className='form-control'
+                required
+                onChange={(ev) => setDescription(ev.target.value)}
+              />
+            </td>
+            <td>
+              <button
+                type='button'
+                className='btn btn-primary'
+                onClick={() => submit()}
+                title='Save new entry'
+              >
+                <i aria-hidden='true' className='material-icons'>
+                  save
+                </i>
+              </button>
+            </td>
+          </tr>
+          <ConfirmModal
+            acceptLabel='Ok'
+            closeAction={setModalOpen}
+            isOpen={modalOpen}
+            message={'New entries require a project.'}
+          />
+        </>
+      ) : (
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button
+              type='button'
+              className='btn btn-primary'
+              onClick={() => setAddingNew(true)}
+              title='Add a new entry'
+            >
+              <i aria-hidden='true' className='material-icons'>
+                more_time
+              </i>
+            </button>
+          </td>
+        </tr>
+      )}
+    </>
   );
 }
 

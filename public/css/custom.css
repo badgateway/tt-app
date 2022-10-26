@@ -18,6 +18,9 @@
 .confirm-modal button:not(:last-of-type) {
   margin-right: 2rem;
 }
+select.validationError {
+  box-shadow: 0 0 0 0.25rem red;
+}
 .material-icons,
 .material-icons-outlined {
   vertical-align: middle;
