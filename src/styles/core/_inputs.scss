@@ -1,3 +1,4 @@
 select.validationError {
-  box-shadow: 0 0 0 0.25rem red
+  box-shadow: 0 0 0 0.25rem var(--bs-red);
+  color: var(--bs-red)
 }

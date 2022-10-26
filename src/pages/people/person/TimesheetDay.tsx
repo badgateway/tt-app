@@ -153,7 +153,6 @@ function EntryItem(props: EntryItemProps) {
             value={resourceState.links.get('project')?.href}
             onChange={(projectHref) => setProject(projectHref)}
             className='form-control'
-            required
           />
         </td>
         <td>
@@ -314,7 +313,7 @@ function EntryItemNew(props: EntryItemNewProps) {
             <td>
               <button
                 type='button'
-                className='btn btn-primary'
+                className='btn btn-success'
                 onClick={() => submit()}
                 title='Save new entry'
               >
