@@ -126,7 +126,7 @@ function EntryItem(props: EntryItemProps) {
       clearTimeout(delayedSubmitTimeout.current);
     }
 
-    delayedSubmitTimeout.current = setTimeout(() => submit(), 5000);
+    delayedSubmitTimeout.current = setTimeout(() => submit(), 1000);
   };
 
   const setDescription = (description: string) => {
