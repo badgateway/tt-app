@@ -64,13 +64,13 @@ export function TimesheetDay(props: TimesheetDayProps) {
             </thead>
             <tbody>
               {items.map((item) => (
-                <EntryDayItem
+                <EntryItem
                   resource={item}
                   key={item.uri}
                   date={props.date}
                 />
               ))}
-              <EntryDayItemNew
+              <EntryItemNew
                 parentResource={props.resource}
                 date={props.date}
                 personResource={props.personResource}
@@ -84,11 +84,11 @@ export function TimesheetDay(props: TimesheetDayProps) {
   );
 }
 
-type EntryDayItemProps = {
+type EntryItemProps = {
   resource: Resource<Entry>;
   date: DateTime;
 };
-function EntryDayItem(props: EntryDayItemProps) {
+function EntryItem(props: EntryItemProps) {
   const {resourceState, setResourceState, loading, error, submit} =
     useResource<Entry>(props.resource);
 
@@ -208,13 +208,13 @@ function EntryDayItem(props: EntryDayItemProps) {
   );
 }
 
-type EntryDayItemNewProps = {
+type EntryItemNewProps = {
   parentResource: Resource;
   personResource: Resource<Person>;
   date: DateTime;
 };
 
-function EntryDayItemNew(props: EntryDayItemNewProps) {
+function EntryItemNew(props: EntryItemNewProps) {
   const [data, setData] = useState<EntryNew>({
     minutes: 60,
     description: '',
