@@ -32,6 +32,7 @@ export function ConfirmModal(props: ConfirmModalProps) {
             : () => props.closeAction(false)
         }
         type='button'
+        autoFocus
       >
         {props.acceptLabel ? props.acceptLabel : 'Yes'}
       </button>

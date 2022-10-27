@@ -39,7 +39,7 @@ export function ProjectSelect(props: Props) {
   const realValue = value ? client.go(value).uri : '';
 
   return <select {...passThrough} onChange={changeHandler} value={realValue}>
-    { showSelectProject ? <option key="empty" disabled value=''>Select Project</option> : null }
+    { showSelectProject ? <option key="empty" style={{display: 'none'}} disabled value=''>Select Project</option> : null }
     { items.map( item => <ProjectOption resource={item} key={item.uri} />) }
   </select>;
 }

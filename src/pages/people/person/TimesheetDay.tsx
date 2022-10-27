@@ -9,13 +9,13 @@ import {Entry, EntryNew, Person} from '@badgateway/tt-types';
 
 import {ProjectSelect} from '../../../components/ProjectSelect';
 
-type DayProps = {
+type TimesheetDayProps = {
   resource: Resource;
   personResource: Resource<Person>;
   date: DateTime;
 };
 
-export function EntryDay(props: DayProps) {
+export function TimesheetDay(props: TimesheetDayProps) {
   const {items, loading, error} = useCollection<Entry>(props.resource, {
     refreshOnStale: true,
     rel: 'entry',
@@ -64,13 +64,13 @@ export function EntryDay(props: DayProps) {
             </thead>
             <tbody>
               {items.map((item) => (
-                <EntryDayItem
+                <EntryItem
                   resource={item}
                   key={item.uri}
                   date={props.date}
                 />
               ))}
-              <EntryDayItemNew
+              <EntryItemNew
                 parentResource={props.resource}
                 date={props.date}
                 personResource={props.personResource}
@@ -84,11 +84,11 @@ export function EntryDay(props: DayProps) {
   );
 }
 
-type EntryDayItemProps = {
+type EntryItemProps = {
   resource: Resource<Entry>;
   date: DateTime;
 };
-function EntryDayItem(props: EntryDayItemProps) {
+function EntryItem(props: EntryItemProps) {
   const {resourceState, setResourceState, loading, error, submit} =
     useResource<Entry>(props.resource);
 
@@ -126,7 +126,7 @@ function EntryDayItem(props: EntryDayItemProps) {
       clearTimeout(delayedSubmitTimeout.current);
     }
 
-    delayedSubmitTimeout.current = setTimeout(() => submit(), 5000);
+    delayedSubmitTimeout.current = setTimeout(() => submit(), 1000);
   };
 
   const setDescription = (description: string) => {
@@ -185,6 +185,7 @@ function EntryDayItem(props: EntryDayItemProps) {
             className='btn btn-primary'
             onClick={() => setModalOpen(true)}
             type='button'
+            title='Delete this entry'
           >
             <i aria-hidden='true' className='material-icons'>
               delete
@@ -208,21 +209,23 @@ function EntryDayItem(props: EntryDayItemProps) {
   );
 }
 
-type EntryDayItemNewProps = {
+type EntryItemNewProps = {
   parentResource: Resource;
   personResource: Resource<Person>;
   date: DateTime;
 };
 
-function EntryDayItemNew(props: EntryDayItemNewProps) {
+function EntryItemNew(props: EntryItemNewProps) {
   const [data, setData] = useState<EntryNew>({
     minutes: 60,
     description: '',
     date: props.date.toISODate(),
     billable: false,
   });
-
+  const [addingNew, setAddingNew] = useState<boolean>(false);
   const [projectHref, setProjectHref] = useState<string>();
+  const [projectError, setProjectError] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const setDescription = (description: string) => {
     setData({
@@ -237,18 +240,29 @@ function EntryDayItemNew(props: EntryDayItemNewProps) {
     });
   };
   const setProject = (projectHref: string) => {
+    setProjectError(false);
     setProjectHref(projectHref);
   };
 
   const submit = async () => {
-    await props.parentResource.post({
-      data: {
-        ...data,
-        _links: {
-          project: {href: projectHref},
+    if (!projectHref) {
+      setProjectError(true);
+      setModalOpen(true);
+      return;
+    }
+    try {
+      await props.parentResource.post({
+        data: {
+          ...data,
+          _links: {
+            project: {href: projectHref},
+          },
         },
-      },
-    });
+      });
+    } catch (error: any) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
     setData({
       minutes: 60,
       description: '',
@@ -256,52 +270,86 @@ function EntryDayItemNew(props: EntryDayItemNewProps) {
       billable: false,
     });
     setProjectHref(undefined);
+    setAddingNew(false);
   };
 
   return (
-    <tr>
-      <td>
-        <ProjectSelect
-          value={projectHref}
-          onChange={(projectHref) => setProject(projectHref)}
-          className='form-select'
-          showSelectProject
-        />
-      </td>
-      <td>
-        <input
-          type='number'
-          value={(data.minutes / 60).toFixed(2)}
-          className='form-control'
-          min='0.25'
-          max='24'
-          step='0.25'
-          placeholder='1'
-          required
-          onChange={(ev) =>
-            setMinutes(Math.round(ev.target.valueAsNumber * 60))
-          }
-        />
-      </td>
-      <td>
-        <input
-          type='text'
-          value={data.description}
-          className='form-control'
-          required
-          onChange={(ev) => setDescription(ev.target.value)}
-        />
-      </td>
-      <td>
-        <button
-          type='button'
-          className='btn btn-primary'
-          onClick={() => submit()}
-        >
-          Submit
-        </button>
-      </td>
-    </tr>
+    <>
+      {addingNew ? (
+        <>
+          <tr>
+            <td>
+              <ProjectSelect
+                value={projectHref}
+                onChange={(projectHref) => setProject(projectHref)}
+                className={`form-select ${projectError ? 'validationError' : ''}`}
+                showSelectProject
+              />
+            </td>
+            <td>
+              <input
+                type='number'
+                value={(data.minutes / 60).toFixed(2)}
+                className='form-control'
+                min='0.25'
+                max='24'
+                step='0.25'
+                placeholder='1'
+                required
+                onChange={(ev) =>
+                  setMinutes(Math.round(ev.target.valueAsNumber * 60))
+                }
+              />
+            </td>
+            <td>
+              <input
+                type='text'
+                value={data.description}
+                className='form-control'
+                required
+                onChange={(ev) => setDescription(ev.target.value)}
+              />
+            </td>
+            <td>
+              <button
+                type='button'
+                className='btn btn-success'
+                onClick={() => submit()}
+                title='Save new entry'
+              >
+                <i aria-hidden='true' className='material-icons'>
+                  save
+                </i>
+              </button>
+            </td>
+          </tr>
+          <ConfirmModal
+            acceptLabel='Ok'
+            closeAction={setModalOpen}
+            isOpen={modalOpen}
+            message={'New entries require a project.'}
+          />
+        </>
+      ) : (
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button
+              type='button'
+              className='btn btn-primary'
+              onClick={() => setAddingNew(true)}
+              title='Add a new entry'
+            >
+              <i aria-hidden='true' className='material-icons'>
+                more_time
+              </i>
+            </button>
+          </td>
+        </tr>
+      )}
+    </>
   );
 }
 
