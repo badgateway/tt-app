@@ -29,16 +29,6 @@ export function ProjectsPage() {
       </h1>
       <Link className="btn btn-primary" to='/project/new'>Create new project</Link>
     </div>
-    <div className="work-zone">
-      <details>
-        <summary>Add project</summary>
-        <div>
-          <ErrorBoundary>
-            <ProjectNewPage halt={true}/>
-          </ErrorBoundary>
-        </div>
-      </details>
-    </div>
     <div>
       <CollectionLinks resource={resource} sort="DESC"/>
     </div>
