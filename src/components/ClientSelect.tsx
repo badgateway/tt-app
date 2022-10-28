@@ -10,12 +10,12 @@ type Props = {
   id?: string;
   defaultValue?: string;
   onChange?: (clientHref: string) => void;
-  client?: string;
+  value?: string;
   required?: boolean;
 }
 
 export function ClientSelect(props: Props) {
-  const [selectValue, setSelectValue] = React.useState(props.client);
+  const [selectValue, setSelectValue] = React.useState(props.value);
   const { loading, items } = useCollection('/client');
   const { onChange, ...passThrough } = props;
 
@@ -39,7 +39,6 @@ export function ClientSelect(props: Props) {
       className={props.className}
       id={props.id}
       value={selectValue}
-      required={props.required}
     >
       <option value='' style={{display: 'none'}}>
         Select a client

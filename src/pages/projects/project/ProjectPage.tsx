@@ -54,7 +54,7 @@ export function ProjectPage() {
           id="formProjectClient"
           onChange={clientHref => setClient(clientHref)}
           defaultValue={clientUrl}
-          client={clientUrl}
+          value={clientUrl}
           required
         />
       </div>
