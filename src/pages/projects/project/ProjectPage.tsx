@@ -18,7 +18,7 @@ export function ProjectPage() {
   const updateProject = async (ev: any) => {
 
     ev.preventDefault();
-    submit();
+    await submit();
     navigation('/project');
 
   };
@@ -54,6 +54,8 @@ export function ProjectPage() {
           id="formProjectClient"
           onChange={clientHref => setClient(clientHref)}
           defaultValue={clientUrl}
+          client={clientUrl}
+          required
         />
       </div>
       <div>
