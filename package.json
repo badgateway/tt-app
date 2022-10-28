@@ -39,7 +39,7 @@
     "eslint": "^8.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-ketting": "^4.0.0-beta.1",
+    "react-ketting": "^4.0.10",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.2.1",
     "tsc-watch": "^5.0.3",
