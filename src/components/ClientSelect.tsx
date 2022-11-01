@@ -10,10 +10,12 @@ type Props = {
   id?: string;
   defaultValue?: string;
   onChange?: (clientHref: string) => void;
+  value?: string;
+  required?: boolean;
 }
 
 export function ClientSelect(props: Props) {
-
+  const [selectValue, setSelectValue] = React.useState(props.value);
   const { loading, items } = useCollection('/client');
   const { onChange, ...passThrough } = props;
 
@@ -24,14 +26,28 @@ export function ClientSelect(props: Props) {
   const changeHandler = (ev: React.ChangeEvent<HTMLSelectElement>) => {
 
     if (onChange) {
+      setSelectValue(ev.target.value);
       onChange(ev.target.value);
     }
 
   };
 
-  return <select {...passThrough} onChange={changeHandler}>
-    { items.map( item => <ClientOption resource={item} key={item.uri} />) }
-  </select>;
+  return (
+    <select
+      {...passThrough}
+      onChange={changeHandler}
+      className={props.className}
+      id={props.id}
+      value={selectValue}
+    >
+      <option value='' style={{display: 'none'}}>
+        Select a client
+      </option>
+      {items.map((item) => (
+        <ClientOption resource={item} key={item.uri} />
+      ))}
+    </select>
+  );
 }
 
 

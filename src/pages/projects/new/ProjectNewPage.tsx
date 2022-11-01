@@ -3,11 +3,11 @@ import { useNewResource } from 'react-ketting';
 import { useNavigate } from 'react-router-dom';
 import { ClientSelect } from '../../../components/ClientSelect';
 
-type pageProps = {
+type ProjectNewPageProps = {
   halt?: boolean;
 }
 
-export function ProjectNewPage(props: pageProps) {
+export function ProjectNewPage(props: ProjectNewPageProps) {
 
   const { submit, resourceState, setResourceState } = useNewResource('/project', {
     initialData: {
@@ -56,6 +56,7 @@ export function ProjectNewPage(props: pageProps) {
           className="form-select"
           id="formProjectClient"
           onChange={clientHref => setClient(clientHref)}
+          required
         />
       </div>
       <div>
